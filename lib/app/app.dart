@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:bagguard/app/app_router.dart';
 import 'package:bagguard/core/theme/app_theme.dart';
 
 class App extends StatelessWidget {
@@ -7,15 +8,15 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bag Guard',
+    return MaterialApp.router(
+      title: 'BagGuard',
       debugShowCheckedModeBanner: false,
 
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.system,
 
-      home: const SizedBox(),
+      routerConfig: AppRouter.router,
     );
   }
 }
