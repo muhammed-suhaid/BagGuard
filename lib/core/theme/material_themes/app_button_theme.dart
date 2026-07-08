@@ -6,11 +6,10 @@ import 'package:bagguard/core/theme/app_radius.dart';
 class AppButtonTheme {
   AppButtonTheme._();
 
-  static ElevatedButtonThemeData get elevatedLight {
-    return ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
+  static FilledButtonThemeData get filledLight {
+    return FilledButtonThemeData(
+      style: FilledButton.styleFrom(
         elevation: 0,
-        minimumSize: const Size(double.infinity, 50),
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(
@@ -20,13 +19,12 @@ class AppButtonTheme {
     );
   }
 
-  static ElevatedButtonThemeData get elevatedDark => elevatedLight;
+  static FilledButtonThemeData get filledDark => filledLight;
 
   static OutlinedButtonThemeData get outlinedLight {
     return OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        minimumSize: const Size(double.infinity, 50),
-        side: const BorderSide(color: AppColors.borderLight),
+        side: const BorderSide(color: AppColors.primary),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.button),
         ),
@@ -34,15 +32,17 @@ class AppButtonTheme {
     );
   }
 
-  static OutlinedButtonThemeData get outlinedDark {
-    return OutlinedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        minimumSize: const Size(double.infinity, 50),
-        side: const BorderSide(color: AppColors.borderDark),
+  static OutlinedButtonThemeData get outlinedDark => outlinedLight;
+
+  static TextButtonThemeData get textLight {
+    return TextButtonThemeData(
+      style: TextButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.button),
         ),
       ),
     );
   }
+
+  static TextButtonThemeData get textDark => textLight;
 }

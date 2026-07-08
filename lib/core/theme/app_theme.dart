@@ -33,8 +33,9 @@ class AppTheme {
       dialogTheme: AppDialogTheme.light,
       inputDecorationTheme: AppInputTheme.light,
 
-      elevatedButtonTheme: AppButtonTheme.elevatedLight,
+      filledButtonTheme: AppButtonTheme.filledLight,
       outlinedButtonTheme: AppButtonTheme.outlinedLight,
+      textButtonTheme: AppButtonTheme.textLight,
 
       snackBarTheme: AppSnackBarTheme.light,
       switchTheme: AppSwitchTheme.light,
@@ -62,8 +63,9 @@ class AppTheme {
       dialogTheme: AppDialogTheme.dark,
       inputDecorationTheme: AppInputTheme.dark,
 
-      elevatedButtonTheme: AppButtonTheme.elevatedDark,
+      filledButtonTheme: AppButtonTheme.filledDark,
       outlinedButtonTheme: AppButtonTheme.outlinedDark,
+      textButtonTheme: AppButtonTheme.textDark,
 
       snackBarTheme: AppSnackBarTheme.dark,
       switchTheme: AppSwitchTheme.dark,
