@@ -65,8 +65,6 @@ class AppButton extends StatelessWidget {
       case AppButtonVariant.text:
         return TextButton(
           style: TextButton.styleFrom(
-            padding: EdgeInsets.zero,
-            minimumSize: Size.zero,
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             visualDensity: VisualDensity.compact,
           ),
