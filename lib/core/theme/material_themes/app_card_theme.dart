@@ -10,6 +10,7 @@ class AppCardTheme {
     return CardThemeData(
       color: AppColors.cardLight,
       elevation: 0,
+      margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppRadius.card),
       ),
@@ -20,6 +21,7 @@ class AppCardTheme {
     return CardThemeData(
       color: AppColors.cardDark,
       elevation: 0,
+      margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppRadius.card),
       ),
