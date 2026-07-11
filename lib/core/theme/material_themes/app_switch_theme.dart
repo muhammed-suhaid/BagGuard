@@ -6,26 +6,24 @@ class AppSwitchTheme {
   AppSwitchTheme._();
 
   static SwitchThemeData get light {
-    return const SwitchThemeData(
-      thumbColor: WidgetStatePropertyAll(AppColors.switchThumb),
-    ).copyWith(
-      trackColor: WidgetStateProperty.resolveWith(
-        (states) => states.contains(WidgetState.selected)
+    return SwitchThemeData(
+      thumbColor: const WidgetStatePropertyAll(AppColors.switchThumb),
+      trackColor: WidgetStateProperty.resolveWith((states) {
+        return states.contains(WidgetState.selected)
             ? AppColors.switchTrackActive
-            : AppColors.switchTrackInactiveLight,
-      ),
+            : AppColors.switchTrackInactiveLight;
+      }),
     );
   }
 
   static SwitchThemeData get dark {
-    return const SwitchThemeData(
-      thumbColor: WidgetStatePropertyAll(AppColors.switchThumb),
-    ).copyWith(
-      trackColor: WidgetStateProperty.resolveWith(
-        (states) => states.contains(WidgetState.selected)
+    return SwitchThemeData(
+      thumbColor: const WidgetStatePropertyAll(AppColors.switchThumb),
+      trackColor: WidgetStateProperty.resolveWith((states) {
+        return states.contains(WidgetState.selected)
             ? AppColors.switchTrackActive
-            : AppColors.switchTrackInactiveDark,
-      ),
+            : AppColors.switchTrackInactiveDark;
+      }),
     );
   }
 }
