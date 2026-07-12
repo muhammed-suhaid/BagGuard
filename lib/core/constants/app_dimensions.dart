@@ -7,6 +7,7 @@ class AppDimensions {
   static const double buttonLarge = 56;
 
   // Icons
+  static const double iconXSmall = 12;
   static const double iconSmall = 16;
   static const double iconMedium = 20;
   static const double iconLarge = 24;
@@ -20,4 +21,11 @@ class AppDimensions {
   // Loading
   static const double loadingIndicatorSize = 20;
   static const double loadingIndicatorStroke = 2;
+
+  // Image
+  static const double deviceCardWidth = 170;
+  static const double deviceCardHeight = 220;
+
+  // Image
+  static const double deviceImage = 110;
 }

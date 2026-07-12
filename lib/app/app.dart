@@ -1,3 +1,4 @@
+import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bagguard/app/app_router.dart';
@@ -9,7 +10,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'BagGuard',
+      title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
 
       theme: AppTheme.light,

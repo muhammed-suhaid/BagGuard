@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:bagguard/core/theme/app_spacing.dart';
+import 'package:bagguard/core/constants/app_icons.dart';
 
 class AppTextField extends StatefulWidget {
   const AppTextField({
@@ -115,9 +116,7 @@ class _AppTextFieldState extends State<AppTextField> {
                       });
                     },
                     icon: Icon(
-                      _obscure
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility_outlined,
+                      _obscure ? AppIcons.visibilityOff : AppIcons.visibility,
                     ),
                   )
                 : widget.suffixIcon,

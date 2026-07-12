@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:bagguard/core/theme/app_radius.dart';
+import 'package:bagguard/core/theme/app_shadows.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 
 class AppCard extends StatelessWidget {
@@ -25,19 +26,24 @@ class AppCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final radius = borderRadius ?? AppRadius.card;
 
-    return Card(
+    return Container(
       margin: margin ?? EdgeInsets.zero,
-      color: color,
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
+      decoration: BoxDecoration(
+        color: color ?? Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(radius),
+        boxShadow: AppShadow.card,
       ),
-      child: InkWell(
-        onTap: onTap,
+      child: Material(
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(radius),
-        child: Padding(
-          padding: padding ?? const EdgeInsets.all(AppSpacing.lg),
-          child: child,
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(radius),
+          child: Padding(
+            padding: padding ?? const EdgeInsets.all(AppSpacing.lg),
+            child: child,
+          ),
         ),
       ),
     );
