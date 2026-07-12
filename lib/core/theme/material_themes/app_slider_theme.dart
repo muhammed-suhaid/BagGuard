@@ -13,6 +13,7 @@ class AppSliderTheme {
     trackHeight: 4,
     thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8),
     overlayShape: RoundSliderOverlayShape(overlayRadius: 18),
+    showValueIndicator: ShowValueIndicator.onDrag,
   );
 
   static const SliderThemeData dark = SliderThemeData(
@@ -23,5 +24,6 @@ class AppSliderTheme {
     trackHeight: 4,
     thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8),
     overlayShape: RoundSliderOverlayShape(overlayRadius: 18),
+    showValueIndicator: ShowValueIndicator.onDrag,
   );
 }
