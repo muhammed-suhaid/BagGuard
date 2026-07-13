@@ -1,0 +1,1 @@
+enum AppLoadingSize { small, large }

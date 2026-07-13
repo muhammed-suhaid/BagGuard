@@ -19,7 +19,8 @@ class AppDimensions {
   static const double quickActionLarge = 70;
 
   // Loading
-  static const double loadingIndicatorSize = 20;
+  static const double loadingIndicatorSmall = 20;
+  static const double loadingIndicatorLarge = 40;
   static const double loadingIndicatorStroke = 2;
 
   // Image

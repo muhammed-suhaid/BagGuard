@@ -77,8 +77,8 @@ class AppButton extends StatelessWidget {
   Widget _buildChild(BuildContext context) {
     if (isLoading) {
       return SizedBox(
-        width: AppDimensions.loadingIndicatorSize,
-        height: AppDimensions.loadingIndicatorSize,
+        width: AppDimensions.loadingIndicatorSmall,
+        height: AppDimensions.loadingIndicatorSmall,
         child: CircularProgressIndicator(
           strokeWidth: AppDimensions.loadingIndicatorStroke,
           color: _loadingColor(context),
