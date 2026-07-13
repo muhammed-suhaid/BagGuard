@@ -2,19 +2,23 @@ import 'package:go_router/go_router.dart';
 
 import 'package:bagguard/app/app_routes.dart';
 
+import 'package:bagguard/app/widgets/not_found_screen.dart';
+import 'package:bagguard/features/splash/presentation/pages/splash_page.dart';
+import 'package:bagguard/features/history/presentation/pages/history_page.dart';
+import 'package:bagguard/features/devices/presentation/pages/devices_page.dart';
+import 'package:bagguard/features/settings/presentation/pages/settings_page.dart';
 import 'package:bagguard/features/bluetooth/presentation/pages/bluetooth_page.dart';
 import 'package:bagguard/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:bagguard/features/devices/presentation/pages/device_details_page.dart';
-import 'package:bagguard/features/devices/presentation/pages/devices_page.dart';
-import 'package:bagguard/features/history/presentation/pages/history_page.dart';
-import 'package:bagguard/features/settings/presentation/pages/settings_page.dart';
-import 'package:bagguard/features/splash/presentation/pages/splash_page.dart';
 
 class AppRouter {
   AppRouter._();
 
   static final GoRouter router = GoRouter(
     initialLocation: AppRoutes.splash,
+
+    errorBuilder: (context, state) => const NotFoundScreen(),
+
     routes: [
       GoRoute(
         path: AppRoutes.splash,

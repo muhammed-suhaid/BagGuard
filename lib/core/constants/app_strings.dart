@@ -4,6 +4,9 @@ class AppStrings {
   // General
   static const appName = 'BagGuard';
 
+  // Navigation
+  static const toDashboard = 'Go to Dashboard';
+
   // Device
   static const connected = 'Connected';
   static const disconnected = 'Disconnected';
@@ -28,4 +31,9 @@ class AppStrings {
   static const save = 'Save';
   static const rename = 'Rename';
   static const delete = 'Delete';
+
+  // Page Not Found
+  static const pageNotFound = 'Page Not Found';
+  static const pageNotFoundMessage =
+      'The page you are looking for does not exist.';
 }
