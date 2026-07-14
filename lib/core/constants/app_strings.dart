@@ -3,6 +3,7 @@ class AppStrings {
 
   // General
   static const appName = 'BagGuard';
+  static const appSubtitle = 'Smart Bag Security';
 
   // Navigation
   static const toDashboard = 'Go to Dashboard';

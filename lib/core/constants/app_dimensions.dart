@@ -1,6 +1,9 @@
 class AppDimensions {
   AppDimensions._();
 
+  // Logo
+  static const double logoLarge = 110;
+
   // Buttons
   static const double buttonSmall = 48;
   static const double buttonMedium = 52;
@@ -23,7 +26,7 @@ class AppDimensions {
   static const double loadingIndicatorLarge = 40;
   static const double loadingIndicatorStroke = 2;
 
-  // Image
+  // Card
   static const double deviceCardWidth = 170;
   static const double deviceCardHeight = 220;
 
