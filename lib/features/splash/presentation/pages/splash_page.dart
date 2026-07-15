@@ -1,56 +1,50 @@
 import 'package:flutter/material.dart';
 
-import 'package:bagguard/core/theme/app_colors.dart';
-import 'package:bagguard/core/theme/app_spacing.dart';
-import 'package:bagguard/core/constants/app_icons.dart';
-import 'package:bagguard/core/constants/app_strings.dart';
-import 'package:bagguard/shared/widgets/app_loading.dart';
-import 'package:bagguard/core/enums/app_loading_size.dart';
-import 'package:bagguard/core/constants/app_dimensions.dart';
+import 'package:go_router/go_router.dart';
+import 'package:bagguard/app/app_routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:bagguard/features/splash/presentation/bloc/splash_bloc.dart';
+import 'package:bagguard/features/splash/presentation/bloc/splash_state.dart';
+import 'package:bagguard/features/splash/presentation/widgets/splash_error_view.dart';
+import 'package:bagguard/features/splash/presentation/widgets/splash_loading_view.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    return BlocConsumer<SplashBloc, SplashState>(
+      listener: (context, state) {
+        if (state is SplashNavigate) {
+          switch (state.destination) {
+            case SplashDestination.permission:
+              context.go(AppRoutes.bluetooth);
+              // TODO: Replace with Scan Devices page.
+              break;
 
-    return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.xl),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                AppIcons.shield,
-                color: AppColors.primary,
-                size: AppDimensions.logoLarge,
-              ),
+            case SplashDestination.bluetooth:
+              context.go(AppRoutes.bluetooth);
+              break;
 
-              const SizedBox(height: AppSpacing.xl),
+            case SplashDestination.dashboard:
+              context.go(AppRoutes.dashboard);
+              break;
 
-              Text(
-                AppStrings.appName,
-                textAlign: TextAlign.center,
-                style: textTheme.headlineLarge,
-              ),
+            case SplashDestination.scan:
+              // TODO: Replace with Scan Devices page.
+              context.go(AppRoutes.bluetooth);
+              break;
+          }
+        }
+      },
 
-              const SizedBox(height: AppSpacing.sm),
-
-              Text(
-                AppStrings.appSubtitle,
-                textAlign: TextAlign.center,
-                style: textTheme.bodyMedium,
-              ),
-
-              const SizedBox(height: AppSpacing.xxxl),
-
-              const AppLoading(size: AppLoadingSize.large),
-            ],
-          ),
-        ),
-      ),
+      builder: (context, state) {
+        if (state is SplashError) {
+          return const SplashErrorView();
+        }
+        return const SplashLoadingView();
+      },
     );
   }
 }

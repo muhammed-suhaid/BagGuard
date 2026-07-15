@@ -32,9 +32,15 @@ class AppStrings {
   static const save = 'Save';
   static const rename = 'Rename';
   static const delete = 'Delete';
+  static const retry = 'Retry';
 
   // Page Not Found
   static const pageNotFound = 'Page Not Found';
   static const pageNotFoundMessage =
       'The page you are looking for does not exist.';
+
+  // splash
+  static const startupErrorTitle = 'Unable to Start';
+  static const startupErrorMessage =
+      'Something went wrong while starting the application. Please try again.';
 }

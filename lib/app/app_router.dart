@@ -1,9 +1,15 @@
 import 'package:go_router/go_router.dart';
 
 import 'package:bagguard/app/app_routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bagguard/app/widgets/not_found_screen.dart';
+
+import 'package:bagguard/features/splash/data/services/startup_service.dart';
+import 'package:bagguard/features/splash/presentation/bloc/splash_bloc.dart';
+import 'package:bagguard/features/splash/presentation/bloc/splash_event.dart';
 import 'package:bagguard/features/splash/presentation/pages/splash_page.dart';
+
 import 'package:bagguard/features/history/presentation/pages/history_page.dart';
 import 'package:bagguard/features/devices/presentation/pages/devices_page.dart';
 import 'package:bagguard/features/settings/presentation/pages/settings_page.dart';
@@ -22,7 +28,12 @@ class AppRouter {
     routes: [
       GoRoute(
         path: AppRoutes.splash,
-        builder: (context, state) => const SplashPage(),
+        builder: (context, state) => BlocProvider(
+          create: (_) =>
+              SplashBloc(startupService: StartupService())
+                ..add(const SplashStarted()),
+          child: const SplashPage(),
+        ),
       ),
 
       GoRoute(

@@ -15,6 +15,8 @@ class AppDimensions {
   static const double iconMedium = 20;
   static const double iconLarge = 24;
   static const double iconXLarge = 28;
+  static const double iconXXLarge = 45;
+  static const double iconXXXLarge = 60;
 
   //Quick Actions
   static const double quickActionSmall = 60;
