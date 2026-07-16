@@ -3,6 +3,7 @@ class AppRoutes {
 
   // Startup
   static const splash = '/';
+  static const permission = '/permission';
 
   // Device discovery
   static const bluetooth = '/bluetooth';

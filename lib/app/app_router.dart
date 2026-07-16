@@ -15,6 +15,7 @@ import 'package:bagguard/features/devices/presentation/pages/devices_page.dart';
 import 'package:bagguard/features/settings/presentation/pages/settings_page.dart';
 import 'package:bagguard/features/bluetooth/presentation/pages/bluetooth_page.dart';
 import 'package:bagguard/features/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:bagguard/features/permissions/presentation/pages/permission_page.dart';
 import 'package:bagguard/features/devices/presentation/pages/device_details_page.dart';
 
 class AppRouter {
@@ -34,6 +35,11 @@ class AppRouter {
                 ..add(const SplashStarted()),
           child: const SplashPage(),
         ),
+      ),
+
+      GoRoute(
+        path: AppRoutes.permission,
+        builder: (context, state) => const PermissionPage(),
       ),
 
       GoRoute(

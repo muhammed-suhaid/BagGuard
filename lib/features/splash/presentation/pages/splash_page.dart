@@ -19,8 +19,7 @@ class SplashPage extends StatelessWidget {
         if (state is SplashNavigate) {
           switch (state.destination) {
             case SplashDestination.permission:
-              context.go(AppRoutes.bluetooth);
-              // TODO: Replace with Scan Devices page.
+              context.go(AppRoutes.permission);
               break;
 
             case SplashDestination.bluetooth:

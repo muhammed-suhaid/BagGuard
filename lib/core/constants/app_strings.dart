@@ -12,6 +12,7 @@ class AppStrings {
   static const connected = 'Connected';
   static const disconnected = 'Disconnected';
   static const protection = 'Protection';
+  static const location = 'Location';
   static const battery = 'Battery';
   static const more = 'More';
 
@@ -39,8 +40,17 @@ class AppStrings {
   static const pageNotFoundMessage =
       'The page you are looking for does not exist.';
 
-  // splash
+  // Splash
   static const startupErrorTitle = 'Unable to Start';
   static const startupErrorMessage =
       'Something went wrong while starting the application. Please try again.';
+
+  // Permission
+
+  static const permissionsRequired = 'Permissions Required';
+  static const grantPermissions = 'Grant Permissions';
+  static const nearbyDevices = 'Nearby devices';
+  static const permissionsDescription =
+      'BagGuard requires Bluetooth and Location permissions '
+      'to discover and connect to your BagGuard device.';
 }

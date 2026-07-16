@@ -18,22 +18,24 @@ class SplashErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(AppSpacing.lg),
+      body: SafeArea(
         child: Center(
-          child: AppStateContent(
-            illustration: Icon(
-              AppIcons.error,
-              color: AppColors.error,
-              size: AppDimensions.iconXXXLarge,
-            ),
-            title: AppStrings.startupErrorTitle,
-            message: AppStrings.startupErrorMessage,
-            action: AppButton(
-              text: AppStrings.retry,
-              onPressed: () {
-                context.read<SplashBloc>().add(const SplashStarted());
-              },
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(AppSpacing.xl),
+            child: AppStateContent(
+              illustration: const Icon(
+                AppIcons.error,
+                color: AppColors.error,
+                size: AppDimensions.iconXXXLarge,
+              ),
+              title: AppStrings.startupErrorTitle,
+              message: AppStrings.startupErrorMessage,
+              action: AppButton(
+                text: AppStrings.retry,
+                onPressed: () {
+                  context.read<SplashBloc>().add(const SplashStarted());
+                },
+              ),
             ),
           ),
         ),
