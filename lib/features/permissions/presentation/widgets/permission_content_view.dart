@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
@@ -7,6 +9,8 @@ import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:bagguard/shared/widgets/app_indicator.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/buttons/app_button.dart';
+import 'package:bagguard/features/permissions/presentation/bloc/permission_bloc.dart';
+import 'package:bagguard/features/permissions/presentation/bloc/permission_event.dart';
 
 class PermissionContentView extends StatelessWidget {
   const PermissionContentView({super.key});
@@ -64,7 +68,9 @@ class PermissionContentView extends StatelessWidget {
                 AppButton(
                   text: AppStrings.grantPermissions,
                   onPressed: () {
-                    // BLoC integration
+                    context.read<PermissionBloc>().add(
+                      const PermissionRequested(),
+                    );
                   },
                 ),
               ],

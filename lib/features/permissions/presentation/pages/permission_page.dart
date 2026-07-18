@@ -1,12 +1,50 @@
 import 'package:flutter/widgets.dart';
 
+import 'package:go_router/go_router.dart';
+import 'package:bagguard/app/app_routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:bagguard/features/permissions/presentation/bloc/permission_bloc.dart';
+import 'package:bagguard/features/permissions/presentation/bloc/permission_state.dart';
+import 'package:bagguard/features/permissions/presentation/widgets/permission_error_view.dart';
 import 'package:bagguard/features/permissions/presentation/widgets/permission_content_view.dart';
+import 'package:bagguard/features/permissions/presentation/widgets/permission_permanently_denied_view.dart';
 
 class PermissionPage extends StatelessWidget {
   const PermissionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const PermissionContentView();
+    return BlocConsumer<PermissionBloc, PermissionState>(
+      listener: (context, state) {
+        if (state is PermissionNavigate) {
+          switch (state.destination) {
+            case PermissionDestination.bluetooth:
+              context.go(AppRoutes.bluetooth);
+              break;
+
+            case PermissionDestination.scan:
+              // TODO: Replace with Scan Devices page.
+              context.go(AppRoutes.bluetooth);
+              break;
+
+            case PermissionDestination.dashboard:
+              context.go(AppRoutes.dashboard);
+              break;
+          }
+        }
+      },
+      builder: (context, state) {
+        if (state is PermissionError) {
+          return const PermissionErrorView();
+        }
+
+        if (state is PermissionPermanentlyDenied) {
+          return const PermissionPermanentlyDeniedView();
+        }
+
+        return const PermissionContentView();
+      },
+    );
   }
 }

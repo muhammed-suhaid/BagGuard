@@ -40,6 +40,7 @@ class AppIcons {
   // Misc
   static const location = Icons.location_on_outlined;
   static const history = Icons.history;
+  static const lock = Icons.lock;
 
   // Error
   static const error = Icons.error_outline;

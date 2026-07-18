@@ -34,11 +34,17 @@ class AppStrings {
   static const rename = 'Rename';
   static const delete = 'Delete';
   static const retry = 'Retry';
+  static const grantPermissions = 'Grant Permissions';
+  static const openSettings = 'Open Settings';
 
   // Page Not Found
   static const pageNotFound = 'Page Not Found';
   static const pageNotFoundMessage =
       'The page you are looking for does not exist.';
+
+  // Errors
+  static const somethingWentWrong = 'Something went wrong';
+  static const unableToRequest = 'Unable to request. Please try again.';
 
   // Splash
   static const startupErrorTitle = 'Unable to Start';
@@ -46,11 +52,12 @@ class AppStrings {
       'Something went wrong while starting the application. Please try again.';
 
   // Permission
-
   static const permissionsRequired = 'Permissions Required';
-  static const grantPermissions = 'Grant Permissions';
   static const nearbyDevices = 'Nearby devices';
   static const permissionsDescription =
       'BagGuard requires Bluetooth and Location permissions '
       'to discover and connect to your BagGuard device.';
+  static const permissionRequired = 'Permissions Required';
+  static const permissionSettingsMessage =
+      'Permissions have been permanently denied. Please enable them in Settings.';
 }
