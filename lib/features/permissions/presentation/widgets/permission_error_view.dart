@@ -29,7 +29,7 @@ class PermissionErrorView extends StatelessWidget {
                 size: AppDimensions.iconXXXLarge,
               ),
               title: AppStrings.somethingWentWrong,
-              message: AppStrings.unableToRequest,
+              message: AppStrings.unableToRequestPermissions,
               action: AppButton(
                 text: AppStrings.retry,
                 onPressed: () {

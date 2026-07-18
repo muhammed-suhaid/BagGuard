@@ -21,8 +21,12 @@ class AppStrings {
   static const quickActions = 'Quick Actions';
 
   // Bluetooth
+  static const bluetooth = 'Bluetooth';
   static const bluetoothOff = 'Bluetooth is off';
   static const scanDevices = 'Scan Devices';
+  static const bluetoothRequired = 'Bluetooth Required';
+  static const bluetoothRequiredDescription =
+      'Turn on Bluetooth to connect to your BagGuard device.';
 
   // Empty States
   static const noDevices = 'No devices found';
@@ -36,6 +40,7 @@ class AppStrings {
   static const retry = 'Retry';
   static const grantPermissions = 'Grant Permissions';
   static const openSettings = 'Open Settings';
+  static const turnOnBluetooth = 'Turn On Bluetooth';
 
   // Page Not Found
   static const pageNotFound = 'Page Not Found';
@@ -44,12 +49,12 @@ class AppStrings {
 
   // Errors
   static const somethingWentWrong = 'Something went wrong';
-  static const unableToRequest = 'Unable to request. Please try again.';
-
-  // Splash
-  static const startupErrorTitle = 'Unable to Start';
-  static const startupErrorMessage =
-      'Something went wrong while starting the application. Please try again.';
+  static const unableToStartApplication =
+      'Unable to start the application. Please try again.';
+  static const unableToRequestPermissions =
+      'Unable to request permissions. Please try again.';
+  static const unableToCheckBluetoothStatus =
+      'Unable to check Bluetooth status. Please try again.';
 
   // Permission
   static const permissionsRequired = 'Permissions Required';

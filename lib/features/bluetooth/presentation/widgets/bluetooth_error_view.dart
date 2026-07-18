@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
@@ -9,11 +7,9 @@ import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/app_state_content.dart';
 import 'package:bagguard/shared/widgets/buttons/app_button.dart';
-import 'package:bagguard/features/splash/presentation/bloc/splash_bloc.dart';
-import 'package:bagguard/features/splash/presentation/bloc/splash_event.dart';
 
-class SplashErrorView extends StatelessWidget {
-  const SplashErrorView({super.key});
+class BluetoothErrorView extends StatelessWidget {
+  const BluetoothErrorView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +25,11 @@ class SplashErrorView extends StatelessWidget {
                 size: AppDimensions.iconXXXLarge,
               ),
               title: AppStrings.somethingWentWrong,
-              message: AppStrings.unableToStartApplication,
+              message: AppStrings.unableToCheckBluetoothStatus,
               action: AppButton(
                 text: AppStrings.retry,
                 onPressed: () {
-                  context.read<SplashBloc>().add(const SplashStarted());
+                  // Bluetooth BLoC integration
                 },
               ),
             ),
