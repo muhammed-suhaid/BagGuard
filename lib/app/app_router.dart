@@ -14,10 +14,13 @@ import 'package:bagguard/features/permissions/data/services/permission_service.d
 import 'package:bagguard/features/permissions/presentation/bloc/permission_bloc.dart';
 import 'package:bagguard/features/permissions/presentation/pages/permission_page.dart';
 
+import 'package:bagguard/features/bluetooth/data/services/bluetooth_service.dart';
+import 'package:bagguard/features/bluetooth/presentation/bloc/bluetooth_bloc.dart';
+import 'package:bagguard/features/bluetooth/presentation/pages/bluetooth_page.dart';
+
 import 'package:bagguard/features/history/presentation/pages/history_page.dart';
 import 'package:bagguard/features/devices/presentation/pages/devices_page.dart';
 import 'package:bagguard/features/settings/presentation/pages/settings_page.dart';
-import 'package:bagguard/features/bluetooth/presentation/pages/bluetooth_page.dart';
 import 'package:bagguard/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:bagguard/features/devices/presentation/pages/device_details_page.dart';
 
@@ -53,7 +56,11 @@ class AppRouter {
 
       GoRoute(
         path: AppRoutes.bluetooth,
-        builder: (context, state) => const BluetoothPage(),
+        builder: (context, state) => BlocProvider(
+          create: (_) =>
+              BluetoothBloc(bluetoothService: const BluetoothService()),
+          child: const BluetoothPage(),
+        ),
       ),
 
       GoRoute(
