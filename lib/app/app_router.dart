@@ -39,6 +39,7 @@ class AppRouter {
           create: (_) => SplashBloc(
             startupService: StartupService(
               permissionService: const PermissionService(),
+              bluetoothService: const BluetoothService(),
             ),
           )..add(const SplashStarted()),
           child: const SplashPage(),

@@ -1,11 +1,7 @@
-class StartupResult {
-  const StartupResult({
-    required this.permissionsGranted,
-    required this.bluetoothEnabled,
-    required this.hasPairedDevice,
-  });
+import 'package:bagguard/features/splash/data/models/startup_destination.dart';
 
-  final bool permissionsGranted;
-  final bool bluetoothEnabled;
-  final bool hasPairedDevice;
+class StartupResult {
+  const StartupResult({required this.destination});
+
+  final StartupDestination destination;
 }

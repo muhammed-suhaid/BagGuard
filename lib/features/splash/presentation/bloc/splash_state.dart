@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-enum SplashDestination { permission, bluetooth, dashboard, scan }
+import 'package:bagguard/features/splash/data/models/startup_destination.dart';
 
 sealed class SplashState extends Equatable {
   const SplashState();
@@ -20,7 +19,7 @@ final class SplashLoading extends SplashState {
 final class SplashNavigate extends SplashState {
   const SplashNavigate(this.destination);
 
-  final SplashDestination destination;
+  final StartupDestination destination;
 
   @override
   List<Object?> get props => [destination];

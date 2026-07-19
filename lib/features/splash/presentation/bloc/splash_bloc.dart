@@ -22,22 +22,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     try {
       final result = await _startupService.initialize();
 
-      if (!result.permissionsGranted) {
-        emit(const SplashNavigate(SplashDestination.permission));
-        return;
-      }
-
-      if (!result.bluetoothEnabled) {
-        emit(const SplashNavigate(SplashDestination.bluetooth));
-        return;
-      }
-
-      if (result.hasPairedDevice) {
-        emit(const SplashNavigate(SplashDestination.dashboard));
-        return;
-      }
-
-      emit(const SplashNavigate(SplashDestination.scan));
+      emit(SplashNavigate(result.destination));
     } catch (_) {
       emit(const SplashError());
     }
