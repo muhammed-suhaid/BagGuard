@@ -17,12 +17,13 @@ class BluetoothBloc extends Bloc<BluetoothEvent, BluetoothState> {
     BluetoothRequested event,
     Emitter<BluetoothState> emit,
   ) async {
+    if (state is BluetoothLoading) return;
     emit(const BluetoothLoading());
 
     try {
-      final result = await _bluetoothService.enableBluetooth();
+      final bluetoothEnabled = await _bluetoothService.enableBluetooth();
 
-      if (result.isEnabled) {
+      if (bluetoothEnabled) {
         emit(const BluetoothNavigate(destination: BluetoothDestination.scan));
         return;
       }

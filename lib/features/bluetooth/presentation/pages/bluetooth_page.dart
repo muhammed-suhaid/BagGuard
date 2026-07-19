@@ -34,7 +34,7 @@ class BluetoothPage extends StatelessWidget {
           return const BluetoothErrorView();
         }
 
-        return const BluetoothRequiredView();
+        return BluetoothRequiredView(isLoading: state is BluetoothLoading);
       },
     );
   }

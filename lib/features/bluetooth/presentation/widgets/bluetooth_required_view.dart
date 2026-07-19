@@ -13,7 +13,9 @@ import 'package:bagguard/features/bluetooth/presentation/bloc/bluetooth_bloc.dar
 import 'package:bagguard/features/bluetooth/presentation/bloc/bluetooth_event.dart';
 
 class BluetoothRequiredView extends StatelessWidget {
-  const BluetoothRequiredView({super.key});
+  const BluetoothRequiredView({super.key, this.isLoading = false});
+
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +62,7 @@ class BluetoothRequiredView extends StatelessWidget {
 
                 AppButton(
                   text: AppStrings.turnOnBluetooth,
+                  isLoading: isLoading,
                   onPressed: () {
                     context.read<BluetoothBloc>().add(
                       const BluetoothRequested(),
