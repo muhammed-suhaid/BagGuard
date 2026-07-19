@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-enum PermissionDestination { bluetooth, scan, dashboard }
+import 'package:bagguard/features/splash/data/models/startup_destination.dart';
 
 sealed class PermissionState extends Equatable {
   const PermissionState();
@@ -20,7 +19,7 @@ final class PermissionLoading extends PermissionState {
 final class PermissionNavigate extends PermissionState {
   const PermissionNavigate({required this.destination});
 
-  final PermissionDestination destination;
+  final StartupDestination destination;
 
   @override
   List<Object?> get props => [destination];

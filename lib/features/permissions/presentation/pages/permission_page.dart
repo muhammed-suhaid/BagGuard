@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:bagguard/app/app_routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bagguard/features/splash/data/models/startup_destination.dart';
 import 'package:bagguard/features/permissions/presentation/bloc/permission_bloc.dart';
 import 'package:bagguard/features/permissions/presentation/bloc/permission_state.dart';
 import 'package:bagguard/features/permissions/presentation/widgets/permission_error_view.dart';
@@ -19,16 +20,20 @@ class PermissionPage extends StatelessWidget {
       listener: (context, state) {
         if (state is PermissionNavigate) {
           switch (state.destination) {
-            case PermissionDestination.bluetooth:
+            case StartupDestination.permission:
+              // Already on the permission screen.
+              return;
+
+            case StartupDestination.bluetooth:
               context.go(AppRoutes.bluetooth);
               break;
 
-            case PermissionDestination.scan:
+            case StartupDestination.scan:
               // TODO: Replace with Scan Devices page.
-              context.go(AppRoutes.bluetooth);
+              context.go(AppRoutes.dashboard);
               break;
 
-            case PermissionDestination.dashboard:
+            case StartupDestination.dashboard:
               context.go(AppRoutes.dashboard);
               break;
           }
@@ -43,7 +48,7 @@ class PermissionPage extends StatelessWidget {
           return const PermissionPermanentlyDeniedView();
         }
 
-        return const PermissionContentView();
+        return PermissionContentView(isLoading: state is PermissionLoading);
       },
     );
   }

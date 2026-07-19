@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-enum BluetoothDestination { scan, dashboard }
+import 'package:bagguard/features/splash/data/models/startup_destination.dart';
 
 sealed class BluetoothState extends Equatable {
   const BluetoothState();
@@ -20,7 +19,7 @@ final class BluetoothLoading extends BluetoothState {
 final class BluetoothNavigate extends BluetoothState {
   const BluetoothNavigate({required this.destination});
 
-  final BluetoothDestination destination;
+  final StartupDestination destination;
 
   @override
   List<Object?> get props => [destination];

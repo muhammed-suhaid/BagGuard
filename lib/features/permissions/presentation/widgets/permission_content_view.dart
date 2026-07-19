@@ -13,7 +13,9 @@ import 'package:bagguard/features/permissions/presentation/bloc/permission_bloc.
 import 'package:bagguard/features/permissions/presentation/bloc/permission_event.dart';
 
 class PermissionContentView extends StatelessWidget {
-  const PermissionContentView({super.key});
+  const PermissionContentView({super.key, this.isLoading = false});
+
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +69,7 @@ class PermissionContentView extends StatelessWidget {
 
                 AppButton(
                   text: AppStrings.grantPermissions,
+                  isLoading: isLoading,
                   onPressed: () {
                     context.read<PermissionBloc>().add(
                       const PermissionRequested(),

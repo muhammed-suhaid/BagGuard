@@ -49,8 +49,13 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.permission,
         builder: (context, state) => BlocProvider(
-          create: (_) =>
-              PermissionBloc(permissionService: const PermissionService()),
+          create: (_) => PermissionBloc(
+            permissionService: const PermissionService(),
+            startupService: StartupService(
+              permissionService: const PermissionService(),
+              bluetoothService: const BluetoothService(),
+            ),
+          ),
           child: const PermissionPage(),
         ),
       ),
@@ -58,8 +63,13 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.bluetooth,
         builder: (context, state) => BlocProvider(
-          create: (_) =>
-              BluetoothBloc(bluetoothService: const BluetoothService()),
+          create: (_) => BluetoothBloc(
+            bluetoothService: const BluetoothService(),
+            startupService: StartupService(
+              permissionService: const PermissionService(),
+              bluetoothService: const BluetoothService(),
+            ),
+          ),
           child: const BluetoothPage(),
         ),
       ),
