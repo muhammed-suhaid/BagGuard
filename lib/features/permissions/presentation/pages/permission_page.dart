@@ -4,10 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:bagguard/app/app_routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bagguard/core/constants/app_strings.dart';
+import 'package:bagguard/shared/widgets/app_error_view.dart';
 import 'package:bagguard/features/splash/data/models/startup_destination.dart';
 import 'package:bagguard/features/permissions/presentation/bloc/permission_bloc.dart';
+import 'package:bagguard/features/permissions/presentation/bloc/permission_event.dart';
 import 'package:bagguard/features/permissions/presentation/bloc/permission_state.dart';
-import 'package:bagguard/features/permissions/presentation/widgets/permission_error_view.dart';
 import 'package:bagguard/features/permissions/presentation/widgets/permission_content_view.dart';
 import 'package:bagguard/features/permissions/presentation/widgets/permission_permanently_denied_view.dart';
 
@@ -41,7 +43,12 @@ class PermissionPage extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is PermissionError) {
-          return const PermissionErrorView();
+          return AppErrorView(
+            message: AppStrings.unableToRequestPermissions,
+            onRetry: () {
+              context.read<PermissionBloc>().add(const PermissionRequested());
+            },
+          );
         }
 
         if (state is PermissionPermanentlyDenied) {

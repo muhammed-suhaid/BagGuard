@@ -4,10 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:bagguard/app/app_routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bagguard/core/constants/app_strings.dart';
+import 'package:bagguard/shared/widgets/app_error_view.dart';
 import 'package:bagguard/features/splash/presentation/bloc/splash_bloc.dart';
+import 'package:bagguard/features/splash/presentation/bloc/splash_event.dart';
 import 'package:bagguard/features/splash/presentation/bloc/splash_state.dart';
 import 'package:bagguard/features/splash/data/models/startup_destination.dart';
-import 'package:bagguard/features/splash/presentation/widgets/splash_error_view.dart';
 import 'package:bagguard/features/splash/presentation/widgets/splash_loading_view.dart';
 
 class SplashPage extends StatelessWidget {
@@ -41,8 +43,14 @@ class SplashPage extends StatelessWidget {
 
       builder: (context, state) {
         if (state is SplashError) {
-          return const SplashErrorView();
+          return AppErrorView(
+            message: AppStrings.unableToStartApplication,
+            onRetry: () {
+              context.read<SplashBloc>().add(const SplashStarted());
+            },
+          );
         }
+
         return const SplashLoadingView();
       },
     );
