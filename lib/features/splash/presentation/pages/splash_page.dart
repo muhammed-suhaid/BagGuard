@@ -10,7 +10,7 @@ import 'package:bagguard/features/splash/presentation/bloc/splash_bloc.dart';
 import 'package:bagguard/features/splash/presentation/bloc/splash_event.dart';
 import 'package:bagguard/features/splash/presentation/bloc/splash_state.dart';
 import 'package:bagguard/features/splash/data/models/startup_destination.dart';
-import 'package:bagguard/features/splash/presentation/widgets/splash_loading_view.dart';
+import 'package:bagguard/features/splash/presentation/views/splash_loading_view.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});

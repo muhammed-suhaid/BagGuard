@@ -10,8 +10,8 @@ import 'package:bagguard/features/splash/data/models/startup_destination.dart';
 import 'package:bagguard/features/permissions/presentation/bloc/permission_bloc.dart';
 import 'package:bagguard/features/permissions/presentation/bloc/permission_event.dart';
 import 'package:bagguard/features/permissions/presentation/bloc/permission_state.dart';
-import 'package:bagguard/features/permissions/presentation/widgets/permission_content_view.dart';
-import 'package:bagguard/features/permissions/presentation/widgets/permission_permanently_denied_view.dart';
+import 'package:bagguard/features/permissions/presentation/views/permission_content_view.dart';
+import 'package:bagguard/features/permissions/presentation/views/permission_permanently_denied_view.dart';
 
 class PermissionPage extends StatelessWidget {
   const PermissionPage({super.key});

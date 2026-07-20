@@ -10,7 +10,7 @@ import 'package:bagguard/features/splash/data/models/startup_destination.dart';
 import 'package:bagguard/features/bluetooth/presentation/bloc/bluetooth_bloc.dart';
 import 'package:bagguard/features/bluetooth/presentation/bloc/bluetooth_event.dart';
 import 'package:bagguard/features/bluetooth/presentation/bloc/bluetooth_state.dart';
-import 'package:bagguard/features/bluetooth/presentation/widgets/bluetooth_required_view.dart';
+import 'package:bagguard/features/bluetooth/presentation/views/bluetooth_required_view.dart';
 
 class BluetoothPage extends StatelessWidget {
   const BluetoothPage({super.key});
