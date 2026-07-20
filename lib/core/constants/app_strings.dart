@@ -42,6 +42,8 @@ class AppStrings {
   static const turnOnBluetooth = 'Turn On Bluetooth';
   static const startScanning = 'Start Scanning';
   static const stopScanning = 'Stop Scanning';
+  static const scanAgain = 'Scan Again';
+  static const connect = 'Connect';
 
   // Page Not Found
   static const pageNotFound = 'Page Not Found';
@@ -69,7 +71,10 @@ class AppStrings {
 
   // Scan
   static const scanDevices = 'Scan Devices';
+  static const deviceFound = 'Device found';
+  static const devicesFound = 'Devices found';
   static const scanningDevicesTitle = 'Scanning for\nBagGuard devices...';
   static const scanningDevicesSubtitle =
       'Make sure your device is powered on and nearby.';
+  static const keepYourDevicesClose = 'Keep Your Devices Close';
 }
