@@ -30,8 +30,7 @@ class BluetoothPage extends StatelessWidget {
               return;
 
             case StartupDestination.scan:
-              // TODO: Replace with Scan page.
-              context.go(AppRoutes.dashboard);
+              context.go(AppRoutes.scan);
               break;
 
             case StartupDestination.dashboard:

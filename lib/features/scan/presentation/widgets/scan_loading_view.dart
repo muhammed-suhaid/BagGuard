@@ -4,12 +4,13 @@ import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
 import 'package:bagguard/core/constants/app_strings.dart';
-import 'package:bagguard/shared/widgets/app_loading.dart';
-import 'package:bagguard/core/enums/app_loading_size.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
+import 'package:bagguard/shared/widgets/buttons/app_button.dart';
 
-class SplashLoadingView extends StatelessWidget {
-  const SplashLoadingView({super.key});
+class ScanLoadingView extends StatelessWidget {
+  const ScanLoadingView({super.key, this.isScanning = false});
+
+  final bool isScanning;
 
   @override
   Widget build(BuildContext context) {
@@ -23,32 +24,37 @@ class SplashLoadingView extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                //TODO: Replace with startupAmination Widget
+                //TODO: Replace with RadarAnimation widget.
                 const Icon(
-                  AppIcons.shield,
-                  color: AppColors.primary,
+                  AppIcons.bluetooth,
                   size: AppDimensions.logoLarge,
+                  color: AppColors.primary,
                 ),
 
                 const SizedBox(height: AppSpacing.xl),
 
                 Text(
-                  AppStrings.appName,
+                  AppStrings.scanningDevicesTitle,
                   textAlign: TextAlign.center,
-                  style: textTheme.headlineLarge,
+                  style: textTheme.headlineMedium,
                 ),
 
                 const SizedBox(height: AppSpacing.md),
 
                 Text(
-                  AppStrings.appSubtitle,
+                  AppStrings.scanningDevicesSubtitle,
                   textAlign: TextAlign.center,
                   style: textTheme.bodyMedium,
                 ),
 
                 const SizedBox(height: AppSpacing.xxxl),
 
-                const AppLoading(size: AppLoadingSize.large),
+                AppButton(
+                  text: isScanning
+                      ? AppStrings.stopScanning
+                      : AppStrings.startScanning,
+                  onPressed: () {},
+                ),
               ],
             ),
           ),

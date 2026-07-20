@@ -34,8 +34,7 @@ class SplashPage extends StatelessWidget {
               break;
 
             case StartupDestination.scan:
-              // TODO: Replace with Scan Devices page.
-              context.go(AppRoutes.dashboard);
+              context.go(AppRoutes.scan);
               break;
           }
         }

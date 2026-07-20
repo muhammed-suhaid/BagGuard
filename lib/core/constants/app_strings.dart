@@ -23,7 +23,6 @@ class AppStrings {
   // Bluetooth
   static const bluetooth = 'Bluetooth';
   static const bluetoothOff = 'Bluetooth is off';
-  static const scanDevices = 'Scan Devices';
   static const bluetoothRequired = 'Bluetooth Required';
   static const bluetoothRequiredDescription =
       'Turn on Bluetooth to connect to your BagGuard device.';
@@ -41,6 +40,8 @@ class AppStrings {
   static const grantPermissions = 'Grant Permissions';
   static const openSettings = 'Open Settings';
   static const turnOnBluetooth = 'Turn On Bluetooth';
+  static const startScanning = 'Start Scanning';
+  static const stopScanning = 'Stop Scanning';
 
   // Page Not Found
   static const pageNotFound = 'Page Not Found';
@@ -65,4 +66,10 @@ class AppStrings {
   static const permissionRequired = 'Permissions Required';
   static const permissionSettingsMessage =
       'Permissions have been permanently denied. Please enable them in Settings.';
+
+  // Scan
+  static const scanDevices = 'Scan Devices';
+  static const scanningDevicesTitle = 'Scanning for\nBagGuard devices...';
+  static const scanningDevicesSubtitle =
+      'Make sure your device is powered on and nearby.';
 }

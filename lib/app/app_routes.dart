@@ -7,6 +7,7 @@ class AppRoutes {
 
   // Device discovery
   static const bluetooth = '/bluetooth';
+  static const scan = '/scan';
 
   // Bottom navigation
   static const dashboard = '/dashboard';

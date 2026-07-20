@@ -18,6 +18,8 @@ import 'package:bagguard/features/bluetooth/data/services/bluetooth_service.dart
 import 'package:bagguard/features/bluetooth/presentation/bloc/bluetooth_bloc.dart';
 import 'package:bagguard/features/bluetooth/presentation/pages/bluetooth_page.dart';
 
+import 'package:bagguard/features/scan/presentation/pages/scan_page.dart';
+
 import 'package:bagguard/features/history/presentation/pages/history_page.dart';
 import 'package:bagguard/features/devices/presentation/pages/devices_page.dart';
 import 'package:bagguard/features/settings/presentation/pages/settings_page.dart';
@@ -72,6 +74,11 @@ class AppRouter {
           ),
           child: const BluetoothPage(),
         ),
+      ),
+
+      GoRoute(
+        path: AppRoutes.scan,
+        builder: (context, state) => const ScanPage(),
       ),
 
       GoRoute(
