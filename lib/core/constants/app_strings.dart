@@ -7,6 +7,7 @@ class AppStrings {
 
   // Navigation
   static const toDashboard = 'Go to Dashboard';
+  static const continueToDashboard = 'Continue to Dashboard';
 
   // Device
   static const connected = 'Connected';
@@ -50,6 +51,9 @@ class AppStrings {
   static const pageNotFoundMessage =
       'The page you are looking for does not exist.';
 
+  // Success
+  static const connectedSuccessfully = 'Connected Successfully!';
+
   // Errors
   static const somethingWentWrong = 'Something went wrong';
   static const unableToStartApplication =
@@ -85,4 +89,6 @@ class AppStrings {
   static const connectingTo = 'Connecting to...';
   static const connectingDescription =
       'Please wait while we establish a secure connection.';
+  static const deviceReadyDescription =
+      'Your BagGuard device is now ready to protect your belongings.';
 }

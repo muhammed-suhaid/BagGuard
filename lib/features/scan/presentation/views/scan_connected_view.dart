@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
-import 'package:bagguard/shared/widgets/app_loading.dart';
 import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
+import 'package:bagguard/shared/widgets/buttons/app_button.dart';
 import 'package:bagguard/shared/widgets/app_bottom_action_layout.dart';
 
-class ScanConnectingView extends StatelessWidget {
-  const ScanConnectingView({super.key, required this.deviceName});
+class ScanConnectedView extends StatelessWidget {
+  const ScanConnectedView({super.key, required this.deviceName});
 
   final String deviceName;
 
@@ -33,7 +33,7 @@ class ScanConnectingView extends StatelessWidget {
             const SizedBox(height: AppSpacing.xl),
 
             Text(
-              AppStrings.connectingTo,
+              deviceName,
               textAlign: TextAlign.center,
               style: textTheme.headlineMedium,
             ),
@@ -41,7 +41,7 @@ class ScanConnectingView extends StatelessWidget {
             const SizedBox(height: AppSpacing.sm),
 
             Text(
-              deviceName,
+              AppStrings.connectedSuccessfully,
               textAlign: TextAlign.center,
               style: textTheme.headlineMedium,
             ),
@@ -49,13 +49,18 @@ class ScanConnectingView extends StatelessWidget {
             const SizedBox(height: AppSpacing.md),
 
             Text(
-              AppStrings.connectingDescription,
+              AppStrings.deviceReadyDescription,
               textAlign: TextAlign.center,
               style: textTheme.bodyMedium,
             ),
           ],
         ),
-        bottom: const AppLoading(),
+        bottom: AppButton(
+          text: AppStrings.continueToDashboard,
+          onPressed: () {
+            // Bloc integration
+          },
+        ),
       ),
     );
   }
