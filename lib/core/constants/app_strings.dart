@@ -62,6 +62,8 @@ class AppStrings {
       'Unable to request permissions. Please try again.';
   static const unableToCheckBluetoothStatus =
       'Unable to check Bluetooth status. Please try again.';
+  static const unableToScanNearbyDevices = 'Unable to scan nearby devices.';
+  static const unableToConnectDevice = 'Unable to connect to device.';
 
   // Permission
   static const permissionsRequired = 'Permissions Required';
