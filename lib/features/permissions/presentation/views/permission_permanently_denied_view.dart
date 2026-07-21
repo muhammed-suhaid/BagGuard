@@ -23,8 +23,8 @@ class PermissionPermanentlyDeniedView extends StatelessWidget {
     return Scaffold(
       body: AppBottomActionLayout(
         centerContent: true,
-        content: AppStateContent(
-          illustration: const Icon(
+        content: const AppStateContent(
+          illustration: Icon(
             AppIcons.lock,
             color: AppColors.warning,
             size: AppDimensions.iconXXXLarge,

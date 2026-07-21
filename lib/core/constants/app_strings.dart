@@ -24,11 +24,11 @@ class AppStrings {
   static const bluetooth = 'Bluetooth';
   static const bluetoothOff = 'Bluetooth is off';
   static const bluetoothRequired = 'Bluetooth Required';
+  static const bluetoothIsOn = 'Bluetooth is enabled';
   static const bluetoothRequiredDescription =
       'Turn on Bluetooth to connect to your BagGuard device.';
 
   // Empty States
-  static const noDevices = 'No devices found';
   static const pairFirstDevice = 'Pair your first BagGuard device.';
 
   // Buttons
@@ -73,8 +73,13 @@ class AppStrings {
   static const scanDevices = 'Scan Devices';
   static const deviceFound = 'Device found';
   static const devicesFound = 'Devices found';
+  static const deviceIsOn = 'Device is turned on';
+  static const withinRange = 'Within Range';
   static const scanningDevicesTitle = 'Scanning for\nBagGuard devices...';
   static const scanningDevicesSubtitle =
       'Make sure your device is powered on and nearby.';
   static const keepYourDevicesClose = 'Keep Your Devices Close';
+  static const noDevicesFound = 'No BagGuard devices found';
+  static const noDevicesFoundDescription =
+      'Make sure your BagGuard device is powered on, nearby, and in pairing mode. then try scanning again.';
 }

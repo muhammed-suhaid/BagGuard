@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
@@ -10,26 +8,22 @@ import 'package:bagguard/shared/widgets/app_indicator.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/buttons/app_button.dart';
 import 'package:bagguard/shared/widgets/app_bottom_action_layout.dart';
-import 'package:bagguard/features/permissions/presentation/bloc/permission_bloc.dart';
-import 'package:bagguard/features/permissions/presentation/bloc/permission_event.dart';
 
-class PermissionContentView extends StatelessWidget {
-  const PermissionContentView({super.key, this.isLoading = false});
-
-  final bool isLoading;
+class ScanEmptyView extends StatelessWidget {
+  const ScanEmptyView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-
     return Scaffold(
       body: AppBottomActionLayout(
         centerContent: true,
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // TODO: Replace with illustration
             const Icon(
-              AppIcons.shield,
+              AppIcons.bluetooth,
               size: AppDimensions.logoLarge,
               color: AppColors.primary,
             ),
@@ -37,7 +31,7 @@ class PermissionContentView extends StatelessWidget {
             const SizedBox(height: AppSpacing.xl),
 
             Text(
-              AppStrings.permissionsRequired,
+              AppStrings.noDevicesFound,
               textAlign: TextAlign.center,
               style: textTheme.headlineMedium,
             ),
@@ -45,7 +39,7 @@ class PermissionContentView extends StatelessWidget {
             const SizedBox(height: AppSpacing.md),
 
             Text(
-              AppStrings.permissionsDescription,
+              AppStrings.noDevicesFoundDescription,
               textAlign: TextAlign.center,
               style: textTheme.bodyMedium,
             ),
@@ -57,25 +51,31 @@ class PermissionContentView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const AppIndicator(
+                  icon: Icon(AppIcons.device, size: AppDimensions.iconSmall),
+                  label: AppStrings.deviceIsOn,
+                ),
+
+                const SizedBox(height: AppSpacing.md),
+
+                const AppIndicator(
                   icon: Icon(AppIcons.bluetooth, size: AppDimensions.iconSmall),
-                  label: AppStrings.nearbyDevices,
+                  label: AppStrings.bluetoothIsOn,
                 ),
 
                 const SizedBox(height: AppSpacing.md),
 
                 const AppIndicator(
                   icon: Icon(AppIcons.location, size: AppDimensions.iconSmall),
-                  label: AppStrings.location,
+                  label: AppStrings.withinRange,
                 ),
               ],
             ),
           ],
         ),
         bottom: AppButton(
-          text: AppStrings.grantPermissions,
-          isLoading: isLoading,
+          text: AppStrings.scanAgain,
           onPressed: () {
-            context.read<PermissionBloc>().add(const PermissionRequested());
+            // Bloc integration
           },
         ),
       ),
