@@ -82,4 +82,7 @@ class AppStrings {
   static const noDevicesFound = 'No BagGuard devices found';
   static const noDevicesFoundDescription =
       'Make sure your BagGuard device is powered on, nearby, and in pairing mode. then try scanning again.';
+  static const connectingTo = 'Connecting to...';
+  static const connectingDescription =
+      'Please wait while we establish a secure connection.';
 }
