@@ -28,3 +28,7 @@ final class ScanDeviceConnectionRequested extends ScanEvent {
   @override
   List<Object?> get props => [device];
 }
+
+final class ScanConnectionCancelled extends ScanEvent {
+  const ScanConnectionCancelled();
+}

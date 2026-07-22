@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
-import 'package:bagguard/shared/widgets/app_loading.dart';
 import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
+import 'package:bagguard/shared/widgets/buttons/app_button.dart';
 import 'package:bagguard/shared/widgets/app_bottom_action_layout.dart';
+import 'package:bagguard/features/scan/presentation/bloc/scan_bloc.dart';
+import 'package:bagguard/features/scan/presentation/bloc/scan_event.dart';
 
 class ScanConnectingView extends StatelessWidget {
   const ScanConnectingView({super.key, required this.deviceName});
@@ -55,7 +59,12 @@ class ScanConnectingView extends StatelessWidget {
             ),
           ],
         ),
-        bottom: const AppLoading(),
+        bottom: AppButton(
+          text: AppStrings.cancel,
+          onPressed: () {
+            context.read<ScanBloc>().add(const ScanConnectionCancelled());
+          },
+        ),
       ),
     );
   }
