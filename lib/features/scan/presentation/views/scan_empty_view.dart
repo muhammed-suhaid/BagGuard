@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
@@ -8,6 +10,8 @@ import 'package:bagguard/shared/widgets/app_indicator.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/buttons/app_button.dart';
 import 'package:bagguard/shared/widgets/app_bottom_action_layout.dart';
+import 'package:bagguard/features/scan/presentation/bloc/scan_bloc.dart';
+import 'package:bagguard/features/scan/presentation/bloc/scan_event.dart';
 
 class ScanEmptyView extends StatelessWidget {
   const ScanEmptyView({super.key});
@@ -76,7 +80,7 @@ class ScanEmptyView extends StatelessWidget {
         bottom: AppButton(
           text: AppStrings.scanAgain,
           onPressed: () {
-            // Bloc integration
+            context.read<ScanBloc>().add(const ScanAgainRequested());
           },
         ),
       ),

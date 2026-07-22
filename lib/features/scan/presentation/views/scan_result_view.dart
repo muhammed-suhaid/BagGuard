@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:bagguard/core/enums/app_button_variant.dart';
 import 'package:bagguard/shared/widgets/buttons/app_button.dart';
+import 'package:bagguard/features/scan/data/models/scan_device.dart';
 import 'package:bagguard/shared/widgets/app_bottom_action_layout.dart';
+import 'package:bagguard/features/scan/presentation/bloc/scan_bloc.dart';
+import 'package:bagguard/features/scan/presentation/bloc/scan_event.dart';
 import 'package:bagguard/features/scan/presentation/widgets/discovered_device_card.dart';
 
 class ScanResultView extends StatelessWidget {
-  const ScanResultView({super.key});
+  const ScanResultView({super.key, required this.devices});
 
-  static const List<Map<String, dynamic>> devices = [
-    {'name': 'Laptop Bag', 'rssi': -45},
-    {'name': 'Travel Bag', 'rssi': -62},
-    {'name': 'Office Bag', 'rssi': -78},
-    {'name': 'Laptop Bag', 'rssi': -86},
-  ];
+  final List<ScanDevice> devices;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ScanResultView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              '${devices.length}  ${AppStrings.devicesFound}',
+              '${devices.length} ${AppStrings.devicesFound}',
               textAlign: TextAlign.center,
               style: textTheme.headlineMedium,
             ),
@@ -52,10 +52,12 @@ class ScanResultView extends StatelessWidget {
                 final device = devices[index];
 
                 return DiscoveredDeviceCard(
-                  name: device['name'],
-                  rssi: device['rssi'],
+                  name: device.name,
+                  rssi: device.rssi,
                   onConnect: () {
-                    //Bloc itegration
+                    context.read<ScanBloc>().add(
+                      ScanDeviceConnectionRequested(device: device),
+                    );
                   },
                 );
               },
@@ -66,7 +68,7 @@ class ScanResultView extends StatelessWidget {
           text: AppStrings.scanAgain,
           variant: AppButtonVariant.outlined,
           onPressed: () {
-            //Bloc integration
+            context.read<ScanBloc>().add(const ScanAgainRequested());
           },
         ),
       ),

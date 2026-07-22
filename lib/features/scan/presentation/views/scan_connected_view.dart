@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
+import 'package:bagguard/app/app_routes.dart';
 import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
@@ -58,7 +60,7 @@ class ScanConnectedView extends StatelessWidget {
         bottom: AppButton(
           text: AppStrings.continueToDashboard,
           onPressed: () {
-            // Bloc integration
+            context.go(AppRoutes.dashboard);
           },
         ),
       ),

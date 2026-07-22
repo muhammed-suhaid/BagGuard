@@ -81,8 +81,12 @@ class AppStrings {
   static const devicesFound = 'Devices found';
   static const deviceIsOn = 'Device is turned on';
   static const withinRange = 'Within Range';
-  static const scanningDevicesTitle = 'Scanning for\nBagGuard devices...';
-  static const scanningDevicesSubtitle =
+  static const scanningDevicesInitialTitle = 'Ready to Protect';
+  static const scanningDevicesInitialSubtitle =
+      'Connect your BagGuard device to keep your belongings safe and secure.';
+  static const scanningDevicesLoadingTitle =
+      'Scanning for\nBagGuard devices...';
+  static const scanningDevicesLoadingSubtitle =
       'Make sure your device is powered on and nearby.';
   static const keepYourDevicesClose = 'Keep Your Devices Close';
   static const noDevicesFound = 'No BagGuard devices found';

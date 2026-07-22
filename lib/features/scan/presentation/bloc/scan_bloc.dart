@@ -39,6 +39,11 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
     try {
       final devices = await _scanRepository.scanDevices();
 
+      //TODO: Remove when integrating flutter_blue_plus.
+      if (state is! ScanLoading) {
+        return;
+      }
+
       if (devices.isEmpty) {
         emit(const ScanEmpty());
         return;
@@ -54,7 +59,7 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
     ScanStopped event,
     Emitter<ScanState> emit,
   ) async {
-    emit(const ScanEmpty());
+    emit(const ScanInitial());
   }
 
   Future<void> _onScanDeviceConnectionRequested(

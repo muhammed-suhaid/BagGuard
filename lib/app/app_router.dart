@@ -18,7 +18,10 @@ import 'package:bagguard/features/bluetooth/data/services/bluetooth_service.dart
 import 'package:bagguard/features/bluetooth/presentation/bloc/bluetooth_bloc.dart';
 import 'package:bagguard/features/bluetooth/presentation/pages/bluetooth_page.dart';
 
+import 'package:bagguard/features/scan/data/services/scan_service.dart';
+import 'package:bagguard/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:bagguard/features/scan/presentation/pages/scan_page.dart';
+import 'package:bagguard/features/scan/data/repositories/scan_repository.dart';
 
 import 'package:bagguard/features/history/presentation/pages/history_page.dart';
 import 'package:bagguard/features/devices/presentation/pages/devices_page.dart';
@@ -78,7 +81,12 @@ class AppRouter {
 
       GoRoute(
         path: AppRoutes.scan,
-        builder: (context, state) => const ScanPage(),
+        builder: (context, state) => BlocProvider(
+          create: (_) => ScanBloc(
+            scanRepository: const ScanRepository(scanService: ScanService()),
+          ),
+          child: const ScanPage(),
+        ),
       ),
 
       GoRoute(

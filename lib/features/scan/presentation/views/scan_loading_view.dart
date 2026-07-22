@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
@@ -8,6 +10,8 @@ import 'package:bagguard/core/enums/app_button_variant.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/buttons/app_button.dart';
 import 'package:bagguard/shared/widgets/app_bottom_action_layout.dart';
+import 'package:bagguard/features/scan/presentation/bloc/scan_bloc.dart';
+import 'package:bagguard/features/scan/presentation/bloc/scan_event.dart';
 
 class ScanLoadingView extends StatelessWidget {
   const ScanLoadingView({super.key, this.isScanning = false});
@@ -34,7 +38,9 @@ class ScanLoadingView extends StatelessWidget {
             const SizedBox(height: AppSpacing.xl),
 
             Text(
-              AppStrings.scanningDevicesTitle,
+              isScanning
+                  ? AppStrings.scanningDevicesLoadingTitle
+                  : AppStrings.scanningDevicesInitialTitle,
               textAlign: TextAlign.center,
               style: textTheme.headlineMedium,
             ),
@@ -42,7 +48,9 @@ class ScanLoadingView extends StatelessWidget {
             const SizedBox(height: AppSpacing.md),
 
             Text(
-              AppStrings.scanningDevicesSubtitle,
+              isScanning
+                  ? AppStrings.scanningDevicesLoadingSubtitle
+                  : AppStrings.scanningDevicesInitialSubtitle,
               textAlign: TextAlign.center,
               style: textTheme.bodyMedium,
             ),
@@ -54,7 +62,9 @@ class ScanLoadingView extends StatelessWidget {
               ? AppButtonVariant.outlined
               : AppButtonVariant.filled,
           onPressed: () {
-            //Bloc integration
+            context.read<ScanBloc>().add(
+              isScanning ? const ScanStopped() : const ScanStarted(),
+            );
           },
         ),
       ),
