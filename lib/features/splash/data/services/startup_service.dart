@@ -25,6 +25,6 @@ class StartupService {
     }
 
     // TODO: Check paired device.
-    return const StartupResult(destination: StartupDestination.scan);
+    return const StartupResult(destination: StartupDestination.dashboard);
   }
 }

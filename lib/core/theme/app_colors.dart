@@ -74,4 +74,10 @@ class AppColors {
 
   // ===== Alarm =====
   static const alarm = Color(0xFFDC2626);
+
+  // ===== Navigation =====
+  static const navigationSelected = primaryDark;
+  static const navigationUnselectedLight = Color(0xFF6B7280);
+  static const navigationUnselectedDark = Color(0xFFCBD5E1);
+  static const navigationIndicator = Color(0x3322C55E);
 }

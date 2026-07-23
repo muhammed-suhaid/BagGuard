@@ -3,10 +3,17 @@ import 'package:flutter/material.dart';
 class AppIcons {
   AppIcons._();
 
+  // Bottom Navbar
+  static const navHome1 = Icons.home_outlined;
+  static const navHome2 = Icons.home;
+  static const navDevice1 = Icons.backpack_outlined;
+  static const navDevice2 = Icons.backpack;
+  static const navSettings1 = Icons.settings_outlined;
+  static const navSettings2 = Icons.settings;
+
   // Navigation
   static const menu = Icons.more_vert;
   static const back = Icons.arrow_back_ios_new;
-  static const settings = Icons.settings_outlined;
 
   // Device
   static const device = Icons.backpack_outlined;

@@ -7,11 +7,39 @@ class AppNavigationTheme {
 
   static NavigationBarThemeData light = NavigationBarThemeData(
     backgroundColor: AppColors.backgroundLight,
-    indicatorColor: AppColors.primary.withValues(alpha: 0.12),
+    indicatorColor: Colors.transparent,
+    iconTheme: WidgetStateProperty.resolveWith((states) {
+      return IconThemeData(
+        color: states.contains(WidgetState.selected)
+            ? AppColors.navigationSelected
+            : AppColors.navigationUnselectedLight,
+      );
+    }),
+    labelTextStyle: WidgetStateProperty.resolveWith((states) {
+      return TextStyle(
+        color: states.contains(WidgetState.selected)
+            ? AppColors.navigationSelected
+            : AppColors.navigationUnselectedLight,
+      );
+    }),
   );
 
   static NavigationBarThemeData dark = NavigationBarThemeData(
     backgroundColor: AppColors.backgroundDark,
-    indicatorColor: AppColors.primary.withValues(alpha: 0.12),
+    indicatorColor: Colors.transparent,
+    iconTheme: WidgetStateProperty.resolveWith((states) {
+      return IconThemeData(
+        color: states.contains(WidgetState.selected)
+            ? AppColors.navigationSelected
+            : AppColors.navigationUnselectedDark,
+      );
+    }),
+    labelTextStyle: WidgetStateProperty.resolveWith((states) {
+      return TextStyle(
+        color: states.contains(WidgetState.selected)
+            ? AppColors.navigationSelected
+            : AppColors.navigationUnselectedDark,
+      );
+    }),
   );
 }

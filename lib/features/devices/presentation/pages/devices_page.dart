@@ -5,6 +5,6 @@ class DevicesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Devices Page')));
+    return Center(child: Text('Devices Page'));
   }
 }

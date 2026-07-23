@@ -1,3 +1,4 @@
+import 'package:bagguard/app/shell/app_shell.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:bagguard/app/app_routes.dart';
@@ -35,12 +36,12 @@ class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: AppRoutes.splash,
 
-    errorBuilder: (context, state) => const NotFoundScreen(),
+    errorBuilder: (_, _) => const NotFoundScreen(),
 
     routes: [
       GoRoute(
         path: AppRoutes.splash,
-        builder: (context, state) => BlocProvider(
+        builder: (_, _) => BlocProvider(
           create: (_) => SplashBloc(
             startupService: StartupService(
               permissionService: const PermissionService(),
@@ -53,7 +54,7 @@ class AppRouter {
 
       GoRoute(
         path: AppRoutes.permission,
-        builder: (context, state) => BlocProvider(
+        builder: (_, _) => BlocProvider(
           create: (_) => PermissionBloc(
             permissionService: const PermissionService(),
             startupService: StartupService(
@@ -67,7 +68,7 @@ class AppRouter {
 
       GoRoute(
         path: AppRoutes.bluetooth,
-        builder: (context, state) => BlocProvider(
+        builder: (_, _) => BlocProvider(
           create: (_) => BluetoothBloc(
             bluetoothService: const BluetoothService(),
             startupService: StartupService(
@@ -81,7 +82,7 @@ class AppRouter {
 
       GoRoute(
         path: AppRoutes.scan,
-        builder: (context, state) => BlocProvider(
+        builder: (_, _) => BlocProvider(
           create: (_) => ScanBloc(
             scanRepository: const ScanRepository(scanService: ScanService()),
           ),
@@ -89,30 +90,44 @@ class AppRouter {
         ),
       ),
 
-      GoRoute(
-        path: AppRoutes.dashboard,
-        builder: (context, state) => const DashboardPage(),
-      ),
-
-      GoRoute(
-        path: AppRoutes.devices,
-        builder: (context, state) => const DevicesPage(),
+      StatefulShellRoute.indexedStack(
+        builder: (_, _, navigationShell) {
+          return AppShell(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.dashboard,
+                builder: (_, _) => const DashboardPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.devices,
+                builder: (_, _) => const DevicesPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.settings,
+                builder: (_, _) => const SettingsPage(),
+              ),
+            ],
+          ),
+        ],
       ),
 
       GoRoute(
         path: AppRoutes.deviceDetails,
-        builder: (context, state) => const DeviceDetailsPage(),
+        builder: (_, _) => const DeviceDetailsPage(),
       ),
 
-      GoRoute(
-        path: AppRoutes.history,
-        builder: (context, state) => const HistoryPage(),
-      ),
-
-      GoRoute(
-        path: AppRoutes.settings,
-        builder: (context, state) => const SettingsPage(),
-      ),
+      GoRoute(path: AppRoutes.history, builder: (_, _) => const HistoryPage()),
     ],
   );
 }
