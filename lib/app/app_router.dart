@@ -1,8 +1,8 @@
-import 'package:bagguard/app/shell/app_shell.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:bagguard/app/app_routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bagguard/app/shell/app_shell.dart';
 
 import 'package:bagguard/app/widgets/not_found_screen.dart';
 
