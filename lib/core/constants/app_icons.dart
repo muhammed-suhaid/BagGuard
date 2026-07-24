@@ -12,6 +12,8 @@ class AppIcons {
   static const navSettings2 = Icons.settings;
 
   // Navigation
+  static const hamMenu = Icons.menu;
+  static const notification = Icons.notifications;
   static const menu = Icons.more_vert;
   static const back = Icons.arrow_back_ios_new;
 
@@ -19,6 +21,7 @@ class AppIcons {
   static const device = Icons.backpack_outlined;
   static const bluetooth = Icons.bluetooth;
   static const shield = Icons.shield_outlined;
+  static const scan = Icons.bluetooth_searching;
 
   // Status
   static const connected = Icons.circle;
@@ -48,6 +51,8 @@ class AppIcons {
   static const location = Icons.location_on_outlined;
   static const history = Icons.history;
   static const lock = Icons.lock;
+  static const alarm = Icons.alarm;
+  static const about = Icons.info;
 
   // Error
   static const error = Icons.error_outline;

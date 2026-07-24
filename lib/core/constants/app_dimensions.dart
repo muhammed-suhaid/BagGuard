@@ -30,7 +30,7 @@ class AppDimensions {
 
   // Card
   static const double deviceCardWidth = 170;
-  static const double deviceCardHeight = 220;
+  static const double deviceCardHeight = 230;
 
   // Image
   static const double deviceImage = 110;

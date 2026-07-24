@@ -18,8 +18,11 @@ class AppStrings {
   static const more = 'More';
 
   // Dashboard
-  static const myDevices = 'My Devices';
   static const quickActions = 'Quick Actions';
+  static const sensitivity = 'Sensitivity';
+  static const low = 'Low';
+  static const medium = 'Medium';
+  static const high = 'High';
 
   // Bluetooth
   static const bluetooth = 'Bluetooth';
@@ -45,6 +48,7 @@ class AppStrings {
   static const stopScanning = 'Stop Scanning';
   static const scanAgain = 'Scan Again';
   static const connect = 'Connect';
+  static const testAlarm = 'Test Alarm';
 
   // Page Not Found
   static const pageNotFound = 'Page Not Found';
@@ -78,6 +82,7 @@ class AppStrings {
       'Permissions have been permanently denied. Please enable them in Settings.';
 
   // Scan
+  static const scan = 'Scan';
   static const scanDevices = 'Scan Devices';
   static const deviceFound = 'Device found';
   static const devicesFound = 'Devices found';
@@ -99,4 +104,7 @@ class AppStrings {
       'Please wait while we establish a secure connection.';
   static const deviceReadyDescription =
       'Your BagGuard device is now ready to protect your belongings.';
+
+  // History
+  static const history = 'History';
 }
