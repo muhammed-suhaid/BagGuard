@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:bagguard/core/theme/app_spacing.dart';
-
 class AppHeader extends StatelessWidget {
   const AppHeader({super.key, this.leading, this.title, this.trailing});
 
@@ -13,17 +11,14 @@ class AppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       bottom: false,
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.xl),
-        child: Row(
-          children: [
-            leading ?? SizedBox(width: 48),
+      child: Row(
+        children: [
+          leading ?? SizedBox(width: 48),
 
-            Expanded(child: Center(child: title)),
+          Expanded(child: Center(child: title)),
 
-            trailing ?? SizedBox(width: 48),
-          ],
-        ),
+          trailing ?? SizedBox(width: 48),
+        ],
       ),
     );
   }

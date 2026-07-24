@@ -10,8 +10,8 @@ import 'package:bagguard/shared/widgets/app_indicator.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/buttons/app_icon_button.dart';
 
-class DeviceCard extends StatelessWidget {
-  const DeviceCard({
+class AppDeviceCard extends StatelessWidget {
+  const AppDeviceCard({
     super.key,
     required this.name,
     required this.image,
