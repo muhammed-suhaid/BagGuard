@@ -10,6 +10,7 @@ class AppStrings {
   static const continueToDashboard = 'Continue to Dashboard';
 
   // Device
+  static const myDevices = 'My Devices';
   static const connected = 'Connected';
   static const disconnected = 'Disconnected';
   static const protection = 'Protection';
