@@ -9,10 +9,10 @@ import 'package:bagguard/shared/widgets/app_header.dart';
 import 'package:bagguard/shared/widgets/app_switch.dart';
 import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
-import 'package:bagguard/shared/widgets/app_device_card.dart';
 import 'package:bagguard/shared/widgets/app_quick_action.dart';
 import 'package:bagguard/shared/widgets/app_section_header.dart';
 import 'package:bagguard/shared/widgets/buttons/app_icon_button.dart';
+import 'package:bagguard/features/dashboard/presentation/widgets/device_carousel.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -55,14 +55,7 @@ class DashboardView extends StatelessWidget {
 
                   const SizedBox(height: AppSpacing.xl),
 
-                  Center(
-                    child: AppDeviceCard(
-                      name: 'Laptop Bag',
-                      image: const FlutterLogo(size: 80),
-                      isConnected: true,
-                      batteryLevel: 92,
-                    ),
-                  ),
+                  DeviceCarousel(),
 
                   const SizedBox(height: AppSpacing.xl),
 
