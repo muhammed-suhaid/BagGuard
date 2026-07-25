@@ -24,10 +24,16 @@ import 'package:bagguard/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:bagguard/features/scan/presentation/pages/scan_page.dart';
 import 'package:bagguard/features/scan/data/repositories/scan_repository.dart';
 
-import 'package:bagguard/features/history/presentation/pages/history_page.dart';
-import 'package:bagguard/features/devices/presentation/pages/devices_page.dart';
-import 'package:bagguard/features/settings/presentation/pages/settings_page.dart';
 import 'package:bagguard/features/dashboard/presentation/pages/dashboard_page.dart';
+
+import 'package:bagguard/features/devices/data/services/device_service.dart';
+import 'package:bagguard/features/devices/presentation/bloc/devices_bloc.dart';
+import 'package:bagguard/features/devices/presentation/pages/devices_page.dart';
+import 'package:bagguard/features/devices/presentation/bloc/devices_event.dart';
+import 'package:bagguard/features/devices/data/repositories/device_repository.dart';
+
+import 'package:bagguard/features/history/presentation/pages/history_page.dart';
+import 'package:bagguard/features/settings/presentation/pages/settings_page.dart';
 import 'package:bagguard/features/devices/presentation/pages/device_details_page.dart';
 
 class AppRouter {
@@ -107,7 +113,14 @@ class AppRouter {
             routes: [
               GoRoute(
                 path: AppRoutes.devices,
-                builder: (_, _) => const DevicesPage(),
+                builder: (_, _) => BlocProvider(
+                  create: (_) => DevicesBloc(
+                    deviceRepository: const DeviceRepository(
+                      deviceService: DeviceService(),
+                    ),
+                  )..add(const DevicesStarted()),
+                  child: const DevicesPage(),
+                ),
               ),
             ],
           ),

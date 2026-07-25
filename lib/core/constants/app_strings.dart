@@ -17,6 +17,9 @@ class AppStrings {
   static const location = 'Location';
   static const battery = 'Battery';
   static const more = 'More';
+  static const loadingDevices = 'Loading devices...';
+  static const loadingDevicesDescription =
+      'Please wait while we prepare your devices.';
 
   // Dashboard
   static const quickActions = 'Quick Actions';
