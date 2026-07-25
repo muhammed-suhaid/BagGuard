@@ -12,11 +12,11 @@ class ScanRepository {
     return _scanService.scanDevices();
   }
 
-  Future<void> connectDevice(ScanDevice device) {
-    return _scanService.connectDevice(device);
+  Future<void> connectDevice(ScanDevice device) async {
+    await _scanService.connectDevice(device);
   }
 
-  Future<void> disconnectDevice(ScanDevice device) {
-    return _scanService.disconnectDevice(device);
+  Future<void> disconnectDevice(ScanDevice device) async {
+    await _scanService.disconnectDevice(device);
   }
 }
