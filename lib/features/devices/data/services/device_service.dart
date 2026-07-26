@@ -64,7 +64,7 @@ class DeviceService {
     await Future.delayed(const Duration(milliseconds: 300));
   }
 
-  Future<void> updateSensitivity(Device device, double sensitivity) async {
+  Future<void> updateSensitivity(Device device, int sensitivity) async {
     // TODO: Replace with BLE sensitivity update.
 
     await Future.delayed(const Duration(milliseconds: 300));

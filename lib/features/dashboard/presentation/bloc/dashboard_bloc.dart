@@ -1,15 +1,21 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:bagguard/features/dashboard/presentation/bloc/dashboard_event.dart';
 import 'package:bagguard/features/dashboard/presentation/bloc/dashboard_state.dart';
+import 'package:bagguard/features/devices/data/repositories/device_repository.dart';
 
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
-  DashboardBloc() : super(const DashboardInitial()) {
+  DashboardBloc({required DeviceRepository deviceRepository})
+    : _deviceRepository = deviceRepository,
+      super(const DashboardInitial()) {
     on<DashboardStarted>(_onStarted);
     on<ProtectionToggled>(_onProtectionToggled);
     on<SensitivityChanged>(_onSensitivityChanged);
     on<DeviceChanged>(_onDeviceChanged);
   }
+
+  final DeviceRepository _deviceRepository;
 
   Future<void> _onStarted(
     DashboardStarted event,
@@ -17,29 +23,90 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   ) async {
     emit(const DashboardLoading());
 
-    // TODO: Load the current selected device from DeviceRepository.
+    try {
+      final devices = await _deviceRepository.getDevices();
 
-    emit(const DashboardLoaded());
+      emit(DashboardLoaded(devices: devices, selectedDevice: devices.first));
+    } catch (_) {
+      emit(const DashboardError(AppStrings.somethingWentWrong));
+    }
   }
 
   Future<void> _onProtectionToggled(
     ProtectionToggled event,
     Emitter<DashboardState> emit,
   ) async {
-    // TODO: Update the current device protection through DeviceRepository.
+    final currentState = state;
+
+    if (currentState is! DashboardLoaded) {
+      return;
+    }
+
+    await _deviceRepository.updateProtection(
+      currentState.selectedDevice,
+      event.enabled,
+    );
+
+    final updatedDevice = currentState.selectedDevice.copyWith(
+      protectionEnabled: event.enabled,
+    );
+
+    final updatedDevices = currentState.devices
+        .map((device) => device.id == updatedDevice.id ? updatedDevice : device)
+        .toList();
+
+    emit(
+      DashboardLoaded(devices: updatedDevices, selectedDevice: updatedDevice),
+    );
   }
 
   Future<void> _onSensitivityChanged(
     SensitivityChanged event,
     Emitter<DashboardState> emit,
   ) async {
-    // TODO: Update the current device sensitivity through DeviceRepository.
+    final currentState = state;
+
+    if (currentState is! DashboardLoaded) {
+      return;
+    }
+
+    await _deviceRepository.updateSensitivity(
+      currentState.selectedDevice,
+      event.value,
+    );
+
+    final updatedDevice = currentState.selectedDevice.copyWith(
+      sensitivity: event.value,
+    );
+
+    final updatedDevices = currentState.devices
+        .map((device) => device.id == updatedDevice.id ? updatedDevice : device)
+        .toList();
+
+    emit(
+      DashboardLoaded(devices: updatedDevices, selectedDevice: updatedDevice),
+    );
   }
 
   Future<void> _onDeviceChanged(
     DeviceChanged event,
     Emitter<DashboardState> emit,
   ) async {
-    // TODO: Change the selected device and reload dashboard data.
+    final currentState = state;
+
+    if (currentState is! DashboardLoaded) {
+      return;
+    }
+
+    final selectedDevice = currentState.devices.firstWhere(
+      (device) => device.id == event.deviceId,
+    );
+
+    emit(
+      DashboardLoaded(
+        devices: currentState.devices,
+        selectedDevice: selectedDevice,
+      ),
+    );
   }
 }

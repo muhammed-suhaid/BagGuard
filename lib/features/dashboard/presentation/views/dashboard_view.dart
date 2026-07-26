@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/shared/widgets/app_card.dart';
@@ -8,14 +10,25 @@ import 'package:bagguard/shared/widgets/app_slider.dart';
 import 'package:bagguard/shared/widgets/app_header.dart';
 import 'package:bagguard/shared/widgets/app_switch.dart';
 import 'package:bagguard/core/constants/app_strings.dart';
+import 'package:bagguard/core/utils/sensitivity_utils.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/app_quick_action.dart';
 import 'package:bagguard/shared/widgets/app_section_header.dart';
+import 'package:bagguard/features/devices/data/models/device.dart';
 import 'package:bagguard/shared/widgets/buttons/app_icon_button.dart';
+import 'package:bagguard/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:bagguard/features/dashboard/presentation/bloc/dashboard_event.dart';
 import 'package:bagguard/features/dashboard/presentation/widgets/device_carousel.dart';
 
 class DashboardView extends StatelessWidget {
-  const DashboardView({super.key});
+  const DashboardView({
+    super.key,
+    required this.devices,
+    required this.selectedDevice,
+  });
+
+  final List<Device> devices;
+  final Device selectedDevice;
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +68,28 @@ class DashboardView extends StatelessWidget {
 
                   const SizedBox(height: AppSpacing.xl),
 
-                  DeviceCarousel(),
+                  DeviceCarousel(
+                    devices: devices,
+                    onDeviceChanged: (deviceId) {
+                      context.read<DashboardBloc>().add(
+                        DeviceChanged(deviceId),
+                      );
+                    },
+                  ),
 
                   const SizedBox(height: AppSpacing.xl),
 
                   AppCard(
                     child: AppSectionHeader(
                       title: AppStrings.protection,
-                      action: AppSwitch(value: true, onChanged: (_) {}),
+                      action: AppSwitch(
+                        value: selectedDevice.protectionEnabled,
+                        onChanged: (value) {
+                          context.read<DashboardBloc>().add(
+                            ProtectionToggled(enabled: value),
+                          );
+                        },
+                      ),
                     ),
                   ),
 
@@ -73,12 +100,22 @@ class DashboardView extends StatelessWidget {
                       children: [
                         AppSectionHeader(
                           title: AppStrings.sensitivity,
-                          action: const Text(AppStrings.medium),
+                          action: Text(
+                            SensitivityUtils.label(selectedDevice.sensitivity),
+                          ),
                         ),
 
                         const SizedBox(height: AppSpacing.md),
 
-                        AppSlider(value: 50, label: '50', onChanged: (_) {}),
+                        AppSlider(
+                          value: selectedDevice.sensitivity.toDouble(),
+                          label: selectedDevice.sensitivity.toString(),
+                          onChanged: (value) {
+                            context.read<DashboardBloc>().add(
+                              SensitivityChanged(value: value.round()),
+                            );
+                          },
+                        ),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

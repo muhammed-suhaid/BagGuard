@@ -20,7 +20,7 @@ class DeviceRepository {
     await _deviceService.updateProtection(device, enabled);
   }
 
-  Future<void> updateSensitivity(Device device, double sensitivity) async {
+  Future<void> updateSensitivity(Device device, int sensitivity) async {
     await _deviceService.updateSensitivity(device, sensitivity);
   }
 }

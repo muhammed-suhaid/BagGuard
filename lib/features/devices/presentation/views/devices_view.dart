@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bagguard/features/devices/presentation/bloc/devices_bloc.dart';
-import 'package:bagguard/features/devices/presentation/bloc/devices_event.dart';
 
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
@@ -12,6 +10,8 @@ import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/app_device_card.dart';
 import 'package:bagguard/features/devices/data/models/device.dart';
 import 'package:bagguard/shared/widgets/buttons/app_icon_button.dart';
+import 'package:bagguard/features/devices/presentation/bloc/devices_bloc.dart';
+import 'package:bagguard/features/devices/presentation/bloc/devices_event.dart';
 
 class DevicesView extends StatelessWidget {
   const DevicesView({super.key, required this.devices});

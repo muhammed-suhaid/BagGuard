@@ -24,6 +24,8 @@ import 'package:bagguard/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:bagguard/features/scan/presentation/pages/scan_page.dart';
 import 'package:bagguard/features/scan/data/repositories/scan_repository.dart';
 
+import 'package:bagguard/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:bagguard/features/dashboard/presentation/bloc/dashboard_event.dart';
 import 'package:bagguard/features/dashboard/presentation/pages/dashboard_page.dart';
 
 import 'package:bagguard/features/devices/data/services/device_service.dart';
@@ -105,7 +107,14 @@ class AppRouter {
             routes: [
               GoRoute(
                 path: AppRoutes.dashboard,
-                builder: (_, _) => const DashboardPage(),
+                builder: (_, _) => BlocProvider(
+                  create: (_) => DashboardBloc(
+                    deviceRepository: const DeviceRepository(
+                      deviceService: DeviceService(),
+                    ),
+                  )..add(const DashboardStarted()),
+                  child: const DashboardPage(),
+                ),
               ),
             ],
           ),

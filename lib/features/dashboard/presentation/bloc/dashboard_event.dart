@@ -23,7 +23,7 @@ final class ProtectionToggled extends DashboardEvent {
 final class SensitivityChanged extends DashboardEvent {
   const SensitivityChanged({required this.value});
 
-  final double value;
+  final int value;
 
   @override
   List<Object?> get props => [value];

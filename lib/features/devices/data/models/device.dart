@@ -18,7 +18,7 @@ class Device extends Equatable {
   final int batteryLevel;
   final bool isConnected;
   final bool protectionEnabled;
-  final double sensitivity;
+  final int sensitivity;
   final DateTime? lastConnected;
 
   Device copyWith({
@@ -28,7 +28,7 @@ class Device extends Equatable {
     int? batteryLevel,
     bool? isConnected,
     bool? protectionEnabled,
-    double? sensitivity,
+    int? sensitivity,
     DateTime? lastConnected,
   }) {
     return Device(

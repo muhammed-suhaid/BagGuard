@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/shared/widgets/app_device_card.dart';
+import 'package:bagguard/features/devices/data/models/device.dart';
 import 'package:bagguard/features/dashboard/presentation/widgets/add_device_card.dart';
 
 class DeviceCarousel extends StatefulWidget {
-  const DeviceCarousel({super.key});
+  const DeviceCarousel({
+    super.key,
+    required this.devices,
+    required this.onDeviceChanged,
+  });
+
+  final List<Device> devices;
+  final ValueChanged<String> onDeviceChanged;
 
   @override
   State<DeviceCarousel> createState() => _DeviceCarouselState();
@@ -15,12 +23,6 @@ class _DeviceCarouselState extends State<DeviceCarousel> {
   late final PageController _pageController;
 
   double _currentPage = 0;
-
-  final List<_MockDevice> _devices = const [
-    _MockDevice(name: 'Laptop Bag', batteryLevel: 92, isConnected: true),
-    _MockDevice(name: 'Travel Bag', batteryLevel: 67, isConnected: true),
-    _MockDevice(name: 'Office Bag', batteryLevel: 28, isConnected: false),
-  ];
 
   @override
   void initState() {
@@ -50,7 +52,12 @@ class _DeviceCarouselState extends State<DeviceCarousel> {
           child: PageView.builder(
             controller: _pageController,
             clipBehavior: Clip.none,
-            itemCount: _devices.length + 1,
+            itemCount: widget.devices.length + 1,
+            onPageChanged: (index) {
+              if (index < widget.devices.length) {
+                widget.onDeviceChanged(widget.devices[index].id);
+              }
+            },
             itemBuilder: (context, index) {
               final distance = (_currentPage - index).abs();
 
@@ -60,13 +67,13 @@ class _DeviceCarouselState extends State<DeviceCarousel> {
                   ? 1 - (_currentPage - index).abs() * 0.5
                   : 0.5;
 
-              final child = index == _devices.length
+              final child = index == widget.devices.length
                   ? const AddDeviceCard()
                   : AppDeviceCard(
-                      name: _devices[index].name,
+                      name: widget.devices[index].name,
                       image: const FlutterLogo(size: 80),
-                      isConnected: _devices[index].isConnected,
-                      batteryLevel: _devices[index].batteryLevel,
+                      isConnected: widget.devices[index].isConnected,
+                      batteryLevel: widget.devices[index].batteryLevel,
                     );
               return Transform.scale(
                 scale: scale,
@@ -80,7 +87,7 @@ class _DeviceCarouselState extends State<DeviceCarousel> {
 
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(_devices.length + 1, (index) {
+          children: List.generate(widget.devices.length + 1, (index) {
             final selected = index == _currentPage.round();
 
             return AnimatedContainer(
@@ -101,16 +108,4 @@ class _DeviceCarouselState extends State<DeviceCarousel> {
       ],
     );
   }
-}
-
-class _MockDevice {
-  const _MockDevice({
-    required this.name,
-    required this.batteryLevel,
-    required this.isConnected,
-  });
-
-  final String name;
-  final int batteryLevel;
-  final bool isConnected;
 }

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:bagguard/features/devices/data/models/device.dart';
 
 sealed class DashboardState extends Equatable {
   const DashboardState();
@@ -16,10 +17,13 @@ final class DashboardLoading extends DashboardState {
 }
 
 final class DashboardLoaded extends DashboardState {
-  const DashboardLoaded();
+  const DashboardLoaded({required this.devices, required this.selectedDevice});
+
+  final List<Device> devices;
+  final Device selectedDevice;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [devices, selectedDevice];
 }
 
 final class DashboardError extends DashboardState {
