@@ -17,13 +17,18 @@ final class DashboardLoading extends DashboardState {
 }
 
 final class DashboardLoaded extends DashboardState {
-  const DashboardLoaded({required this.devices, required this.selectedDevice});
+  const DashboardLoaded({
+    required this.devices,
+    required this.selectedDevice,
+    required this.isAddDeviceSelected,
+  });
 
   final List<Device> devices;
   final Device selectedDevice;
+  final bool isAddDeviceSelected;
 
   @override
-  List<Object?> get props => [devices, selectedDevice];
+  List<Object?> get props => [devices, selectedDevice, isAddDeviceSelected];
 }
 
 final class DashboardError extends DashboardState {

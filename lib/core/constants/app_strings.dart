@@ -27,6 +27,7 @@ class AppStrings {
   static const low = 'Low';
   static const medium = 'Medium';
   static const high = 'High';
+  static const addDevice = 'Add Device';
   static const loadingDashboard = 'Loading dashboard...';
   static const loadingDashboardDescription =
       'Fetching your devices and security settings.';

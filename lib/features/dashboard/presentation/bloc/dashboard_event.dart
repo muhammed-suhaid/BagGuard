@@ -37,3 +37,7 @@ final class DeviceChanged extends DashboardEvent {
   @override
   List<Object?> get props => [deviceId];
 }
+
+final class AddDeviceSelected extends DashboardEvent {
+  const AddDeviceSelected();
+}

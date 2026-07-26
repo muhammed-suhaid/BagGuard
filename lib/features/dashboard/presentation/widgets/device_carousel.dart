@@ -10,10 +10,12 @@ class DeviceCarousel extends StatefulWidget {
     super.key,
     required this.devices,
     required this.onDeviceChanged,
+    required this.onAddDeviceSelected,
   });
 
   final List<Device> devices;
   final ValueChanged<String> onDeviceChanged;
+  final VoidCallback onAddDeviceSelected;
 
   @override
   State<DeviceCarousel> createState() => _DeviceCarouselState();
@@ -56,6 +58,8 @@ class _DeviceCarouselState extends State<DeviceCarousel> {
             onPageChanged: (index) {
               if (index < widget.devices.length) {
                 widget.onDeviceChanged(widget.devices[index].id);
+              } else {
+                widget.onAddDeviceSelected();
               }
             },
             itemBuilder: (context, index) {

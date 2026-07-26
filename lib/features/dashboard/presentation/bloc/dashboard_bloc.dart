@@ -13,6 +13,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     on<ProtectionToggled>(_onProtectionToggled);
     on<SensitivityChanged>(_onSensitivityChanged);
     on<DeviceChanged>(_onDeviceChanged);
+    on<AddDeviceSelected>(_onAddDeviceSelected);
   }
 
   final DeviceRepository _deviceRepository;
@@ -26,7 +27,13 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     try {
       final devices = await _deviceRepository.getDevices();
 
-      emit(DashboardLoaded(devices: devices, selectedDevice: devices.first));
+      emit(
+        DashboardLoaded(
+          devices: devices,
+          selectedDevice: devices.first,
+          isAddDeviceSelected: false,
+        ),
+      );
     } catch (_) {
       emit(const DashboardError(AppStrings.somethingWentWrong));
     }
@@ -56,7 +63,11 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         .toList();
 
     emit(
-      DashboardLoaded(devices: updatedDevices, selectedDevice: updatedDevice),
+      DashboardLoaded(
+        devices: updatedDevices,
+        selectedDevice: updatedDevice,
+        isAddDeviceSelected: currentState.isAddDeviceSelected,
+      ),
     );
   }
 
@@ -84,7 +95,11 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         .toList();
 
     emit(
-      DashboardLoaded(devices: updatedDevices, selectedDevice: updatedDevice),
+      DashboardLoaded(
+        devices: updatedDevices,
+        selectedDevice: updatedDevice,
+        isAddDeviceSelected: currentState.isAddDeviceSelected,
+      ),
     );
   }
 
@@ -106,6 +121,26 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       DashboardLoaded(
         devices: currentState.devices,
         selectedDevice: selectedDevice,
+        isAddDeviceSelected: false,
+      ),
+    );
+  }
+
+  Future<void> _onAddDeviceSelected(
+    AddDeviceSelected event,
+    Emitter<DashboardState> emit,
+  ) async {
+    final currentState = state;
+
+    if (currentState is! DashboardLoaded) {
+      return;
+    }
+
+    emit(
+      DashboardLoaded(
+        devices: currentState.devices,
+        selectedDevice: currentState.selectedDevice,
+        isAddDeviceSelected: true,
       ),
     );
   }

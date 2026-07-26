@@ -29,6 +29,7 @@ class DashboardPage extends StatelessWidget {
             return DashboardView(
               devices: state.devices,
               selectedDevice: state.selectedDevice,
+              isAddDeviceSelected: state.isAddDeviceSelected,
             );
 
           case DashboardError():
