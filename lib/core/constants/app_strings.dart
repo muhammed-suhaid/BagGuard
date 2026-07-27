@@ -16,6 +16,10 @@ class AppStrings {
   static const protection = 'Protection';
   static const location = 'Location';
   static const battery = 'Battery';
+  static const firmwareVersion = 'Firmware Version';
+  static const signalStrength = 'Signal Strength';
+  static const lastConnected = 'Last Connected';
+  static const macAddress = 'MAC Address';
   static const more = 'More';
   static const loadingDevices = 'Loading devices...';
   static const loadingDevicesDescription =
@@ -41,7 +45,7 @@ class AppStrings {
       'Turn on Bluetooth to connect to your BagGuard device.';
 
   // Empty States
-  static const pairFirstDevice = 'Pair your first BagGuard device.';
+  static const never = 'Never';
 
   // Buttons
   static const cancel = 'Cancel';
@@ -57,6 +61,8 @@ class AppStrings {
   static const scanAgain = 'Scan Again';
   static const connect = 'Connect';
   static const testAlarm = 'Test Alarm';
+  static const forgetDevice = 'Forget Device';
+  static const disconnectDevice = 'Disconnect Device';
 
   // Page Not Found
   static const pageNotFound = 'Page Not Found';
@@ -67,6 +73,7 @@ class AppStrings {
   static const connectedSuccessfully = 'Connected Successfully!';
 
   // Errors
+  static const unavailable = 'Unavailable';
   static const somethingWentWrong = 'Something went wrong';
   static const unableToStartApplication =
       'Unable to start the application. Please try again.';

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
+import 'package:bagguard/app/app_routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bagguard/core/theme/app_spacing.dart';
@@ -70,7 +72,9 @@ class DevicesView extends StatelessWidget {
                       image: const FlutterLogo(size: 70),
                       batteryLevel: device.batteryLevel,
                       isConnected: device.isConnected,
-                      onTap: () {},
+                      onTap: () {
+                        context.push(AppRoutes.deviceDetails);
+                      },
                       onMorePressed: () {},
                     );
                   },

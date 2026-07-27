@@ -47,6 +47,12 @@ class AppIcons {
   static const battery1 = Icons.battery_1_bar;
   static const batteryAlert = Icons.battery_alert;
 
+  // Signal Strength
+  static const signalFull = Icons.signal_cellular_4_bar;
+  static const signal3 = Icons.signal_cellular_alt;
+  static const signal2 = Icons.signal_cellular_alt_2_bar;
+  static const signal1 = Icons.signal_cellular_alt_1_bar;
+
   // Misc
   static const location = Icons.location_on_outlined;
   static const history = Icons.history;

@@ -17,6 +17,8 @@ class AppButton extends StatelessWidget {
     this.expand = true,
     this.width,
     this.height = AppDimensions.buttonLarge,
+    this.foregroundColor,
+    this.backgroundColor,
   });
 
   final String text;
@@ -29,6 +31,8 @@ class AppButton extends StatelessWidget {
   final bool expand;
   final double? width;
   final double height;
+  final Color? foregroundColor;
+  final Color? backgroundColor;
 
   bool get _canPress => enabled && onPressed != null && !isLoading;
   bool get shouldExpand => variant != AppButtonVariant.text && expand;
@@ -52,19 +56,44 @@ class AppButton extends StatelessWidget {
     switch (variant) {
       case AppButtonVariant.filled:
         return FilledButton(
+          style: Theme.of(context).filledButtonTheme.style?.copyWith(
+            foregroundColor: foregroundColor == null
+                ? null
+                : WidgetStatePropertyAll(foregroundColor),
+            backgroundColor: backgroundColor == null
+                ? null
+                : WidgetStatePropertyAll(backgroundColor),
+          ),
           onPressed: _canPress ? onPressed : null,
           child: _buildChild(context),
         );
 
       case AppButtonVariant.outlined:
         return OutlinedButton(
+          style: Theme.of(context).outlinedButtonTheme.style?.copyWith(
+            foregroundColor: foregroundColor == null
+                ? null
+                : WidgetStatePropertyAll(foregroundColor),
+            backgroundColor: backgroundColor == null
+                ? null
+                : WidgetStatePropertyAll(backgroundColor),
+            side: foregroundColor == null
+                ? null
+                : WidgetStatePropertyAll(BorderSide(color: foregroundColor!)),
+          ),
           onPressed: _canPress ? onPressed : null,
           child: _buildChild(context),
         );
 
       case AppButtonVariant.text:
         return TextButton(
-          style: TextButton.styleFrom(
+          style: Theme.of(context).textButtonTheme.style?.copyWith(
+            foregroundColor: foregroundColor == null
+                ? null
+                : WidgetStatePropertyAll(foregroundColor),
+            backgroundColor: backgroundColor == null
+                ? null
+                : WidgetStatePropertyAll(backgroundColor),
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             visualDensity: VisualDensity.compact,
           ),

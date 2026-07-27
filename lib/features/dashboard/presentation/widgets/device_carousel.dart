@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
+import 'package:bagguard/app/app_routes.dart';
+
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/shared/widgets/app_device_card.dart';
 import 'package:bagguard/features/devices/data/models/device.dart';
@@ -78,6 +81,9 @@ class _DeviceCarouselState extends State<DeviceCarousel> {
                       image: const FlutterLogo(size: 80),
                       isConnected: widget.devices[index].isConnected,
                       batteryLevel: widget.devices[index].batteryLevel,
+                      onTap: () {
+                        context.push(AppRoutes.deviceDetails);
+                      },
                     );
               return Transform.scale(
                 scale: scale,

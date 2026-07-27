@@ -9,6 +9,8 @@ class Device extends Equatable {
     required this.isConnected,
     required this.protectionEnabled,
     required this.sensitivity,
+    required this.firmwareVersion,
+    this.signalStrength,
     this.lastConnected,
   });
 
@@ -19,6 +21,8 @@ class Device extends Equatable {
   final bool isConnected;
   final bool protectionEnabled;
   final int sensitivity;
+  final String firmwareVersion;
+  final int? signalStrength;
   final DateTime? lastConnected;
 
   Device copyWith({
@@ -29,6 +33,8 @@ class Device extends Equatable {
     bool? isConnected,
     bool? protectionEnabled,
     int? sensitivity,
+    String? firmwareVersion,
+    int? signalStrength,
     DateTime? lastConnected,
   }) {
     return Device(
@@ -40,6 +46,8 @@ class Device extends Equatable {
       protectionEnabled: protectionEnabled ?? this.protectionEnabled,
       sensitivity: sensitivity ?? this.sensitivity,
       lastConnected: lastConnected ?? this.lastConnected,
+      firmwareVersion: firmwareVersion ?? this.firmwareVersion,
+      signalStrength: signalStrength ?? this.signalStrength,
     );
   }
 
@@ -52,6 +60,8 @@ class Device extends Equatable {
     isConnected,
     protectionEnabled,
     sensitivity,
+    firmwareVersion,
+    signalStrength,
     lastConnected,
   ];
 }

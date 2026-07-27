@@ -8,7 +8,7 @@ class DeviceService {
 
     await Future.delayed(const Duration(milliseconds: 300));
 
-    return const [
+    return [
       Device(
         id: '1',
         name: 'Laptop Bag',
@@ -17,16 +17,24 @@ class DeviceService {
         isConnected: true,
         protectionEnabled: true,
         sensitivity: 50,
+        firmwareVersion: '1.0.2',
+        signalStrength: -48,
+        lastConnected: null,
       ),
+
       Device(
         id: '2',
         name: 'Travel Bag',
         macAddress: 'AA:BB:CC:DD:EE:02',
         batteryLevel: 71,
-        isConnected: false,
+        isConnected: true,
         protectionEnabled: false,
         sensitivity: 65,
+        firmwareVersion: '1.0.1',
+        signalStrength: -63,
+        lastConnected: null,
       ),
+
       Device(
         id: '3',
         name: 'Backpack',
@@ -35,7 +43,11 @@ class DeviceService {
         isConnected: false,
         protectionEnabled: false,
         sensitivity: 40,
+        firmwareVersion: '0.9.8',
+        signalStrength: null,
+        lastConnected: DateTime(2026, 7, 24, 18, 30),
       ),
+
       Device(
         id: '4',
         name: 'Camera Bag',
@@ -44,6 +56,9 @@ class DeviceService {
         isConnected: true,
         protectionEnabled: true,
         sensitivity: 80,
+        firmwareVersion: '1.1.0',
+        signalStrength: -54,
+        lastConnected: null,
       ),
     ];
   }
