@@ -73,7 +73,7 @@ class DevicesView extends StatelessWidget {
                       batteryLevel: device.batteryLevel,
                       isConnected: device.isConnected,
                       onTap: () {
-                        context.push(AppRoutes.deviceDetails);
+                        context.push(AppRoutes.deviceDetailsPath(device.id));
                       },
                       onMorePressed: () {},
                     );

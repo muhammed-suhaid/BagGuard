@@ -24,6 +24,9 @@ class AppStrings {
   static const loadingDevices = 'Loading devices...';
   static const loadingDevicesDescription =
       'Please wait while we prepare your devices.';
+  static const loadingDevice = 'Loading device...';
+  static const loadingDeviceDescription =
+      'Please wait while we prepare your device.';
 
   // Dashboard
   static const quickActions = 'Quick Actions';

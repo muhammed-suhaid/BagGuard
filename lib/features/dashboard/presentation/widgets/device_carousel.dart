@@ -82,7 +82,9 @@ class _DeviceCarouselState extends State<DeviceCarousel> {
                       isConnected: widget.devices[index].isConnected,
                       batteryLevel: widget.devices[index].batteryLevel,
                       onTap: () {
-                        context.push(AppRoutes.deviceDetails);
+                        context.push(
+                          AppRoutes.deviceDetailsPath(widget.devices[index].id),
+                        );
                       },
                     );
               return Transform.scale(

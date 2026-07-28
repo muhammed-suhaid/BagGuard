@@ -34,9 +34,12 @@ import 'package:bagguard/features/devices/presentation/pages/devices_page.dart';
 import 'package:bagguard/features/devices/presentation/bloc/devices_event.dart';
 import 'package:bagguard/features/devices/data/repositories/device_repository.dart';
 
+import 'package:bagguard/features/devices/presentation/pages/device_details_page.dart';
+import 'package:bagguard/features/devices/presentation/bloc/device_details/device_details_bloc.dart';
+import 'package:bagguard/features/devices/presentation/bloc/device_details/device_details_event.dart';
+
 import 'package:bagguard/features/history/presentation/pages/history_page.dart';
 import 'package:bagguard/features/settings/presentation/pages/settings_page.dart';
-import 'package:bagguard/features/devices/presentation/pages/device_details_page.dart';
 
 class AppRouter {
   AppRouter._();
@@ -146,7 +149,19 @@ class AppRouter {
 
       GoRoute(
         path: AppRoutes.deviceDetails,
-        builder: (_, _) => const DeviceDetailsPage(),
+        builder: (_, state) {
+          final deviceId = state.pathParameters['deviceId']!;
+
+          return BlocProvider(
+            create: (_) => DeviceDetailsBloc(
+              deviceRepository: const DeviceRepository(
+                deviceService: DeviceService(),
+              ),
+              scanRepository: const ScanRepository(scanService: ScanService()),
+            )..add(DeviceDetailsStarted(deviceId)),
+            child: DeviceDetailsPage(deviceId: deviceId),
+          );
+        },
       ),
 
       GoRoute(path: AppRoutes.history, builder: (_, _) => const HistoryPage()),

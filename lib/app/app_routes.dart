@@ -15,6 +15,10 @@ class AppRoutes {
   static const settings = '/settings';
 
   // Secondary pages
-  static const deviceDetails = '/devices/details';
+  static const deviceDetails = '/devices/:deviceId';
   static const history = '/history';
+
+  static String deviceDetailsPath(String deviceId) {
+    return '/devices/$deviceId';
+  }
 }
