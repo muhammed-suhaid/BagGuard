@@ -4,6 +4,7 @@ class Device extends Equatable {
   const Device({
     required this.id,
     required this.name,
+    this.imagePath,
     required this.macAddress,
     required this.batteryLevel,
     required this.isConnected,
@@ -16,6 +17,7 @@ class Device extends Equatable {
 
   final String id;
   final String name;
+  final String? imagePath;
   final String macAddress;
   final int batteryLevel;
   final bool isConnected;
@@ -28,6 +30,7 @@ class Device extends Equatable {
   Device copyWith({
     String? id,
     String? name,
+    String? imagePath,
     String? macAddress,
     int? batteryLevel,
     bool? isConnected,
@@ -40,6 +43,7 @@ class Device extends Equatable {
     return Device(
       id: id ?? this.id,
       name: name ?? this.name,
+      imagePath: imagePath ?? this.imagePath,
       macAddress: macAddress ?? this.macAddress,
       batteryLevel: batteryLevel ?? this.batteryLevel,
       isConnected: isConnected ?? this.isConnected,
@@ -55,6 +59,7 @@ class Device extends Equatable {
   List<Object?> get props => [
     id,
     name,
+    imagePath,
     macAddress,
     batteryLevel,
     isConnected,

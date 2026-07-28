@@ -84,4 +84,26 @@ class DeviceService {
 
     await Future.delayed(const Duration(milliseconds: 300));
   }
+
+  Future<void> renameDevice(Device device, String name) async {
+    // TODO: Replace with Hive update.
+
+    await Future.delayed(const Duration(milliseconds: 300));
+  }
+
+  Future<void> updateDeviceImage(Device device, String imagePath) async {
+    // TODO: Replace with local image storage.
+
+    await Future.delayed(const Duration(milliseconds: 300));
+  }
+
+  Future<void> forgetDevice(Device device) async {
+    // TODO: Follow these steps :
+    // 1. Disconnect if connected.
+    // 2. Remove from Hive.
+    // 3. Delete local image.
+    // 4. Remove cached settings.
+
+    await Future.delayed(const Duration(milliseconds: 300));
+  }
 }

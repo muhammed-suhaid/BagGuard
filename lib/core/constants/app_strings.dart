@@ -85,6 +85,18 @@ class AppStrings {
   static const unableToConnectDevice = 'Unable to connect to device.';
   static const unableToCancelConnection =
       'Unable to cancel the connection. Please try again.';
+  static const failedToUpdateProtection =
+      'Unable to update the protection. Please try again.';
+  static const failedToUpdateSensitivity =
+      'Unable to update the sensitivity. Please try again.';
+  static const failedToRenameDevice =
+      'Unable to rename the Device. Please try again.';
+  static const failedToChangeImage =
+      'Unable to change image. Please try again.';
+  static const failedToDisconnectDevice =
+      'Unable to disconnect the device. Please try again.';
+  static const failedToForgetDevice =
+      'Unable to forget the device. Please try again.';
 
   // Permission
   static const permissionsRequired = 'Permissions Required';

@@ -23,4 +23,16 @@ class DeviceRepository {
   Future<void> updateSensitivity(Device device, int sensitivity) async {
     await _deviceService.updateSensitivity(device, sensitivity);
   }
+
+  Future<void> renameDevice(Device device, String name) async {
+    await _deviceService.renameDevice(device, name);
+  }
+
+  Future<void> updateDeviceImage(Device device, String imagePath) async {
+    await _deviceService.updateDeviceImage(device, imagePath);
+  }
+
+  Future<void> forgetDevice(Device device) async {
+    await _deviceService.forgetDevice(device);
+  }
 }
