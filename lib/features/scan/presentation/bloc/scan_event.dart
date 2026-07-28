@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:bagguard/features/scan/data/models/scan_device.dart';
+
+import 'package:bagguard/features/devices/data/models/device.dart';
 
 sealed class ScanEvent extends Equatable {
   const ScanEvent();
@@ -23,7 +24,7 @@ final class ScanAgainRequested extends ScanEvent {
 final class ScanDeviceConnectionRequested extends ScanEvent {
   const ScanDeviceConnectionRequested({required this.device});
 
-  final ScanDevice device;
+  final Device device;
 
   @override
   List<Object?> get props => [device];

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bagguard/core/constants/app_strings.dart';
-import 'package:bagguard/features/scan/data/models/scan_device.dart';
+import 'package:bagguard/features/devices/data/models/device.dart';
 import 'package:bagguard/features/scan/presentation/bloc/scan_event.dart';
 import 'package:bagguard/features/scan/presentation/bloc/scan_state.dart';
 import 'package:bagguard/features/scan/data/repositories/scan_repository.dart';
@@ -18,8 +18,8 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
   }
 
   final ScanRepository _scanRepository;
-  List<ScanDevice> _devices = [];
-  ScanDevice? _connectingDevice;
+  List<Device> _devices = [];
+  Device? _connectingDevice;
   bool _connectionCancelled = false;
 
   Future<void> _onScanStarted(

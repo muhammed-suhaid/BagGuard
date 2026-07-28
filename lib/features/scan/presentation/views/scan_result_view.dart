@@ -6,7 +6,7 @@ import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:bagguard/core/enums/app_button_variant.dart';
 import 'package:bagguard/shared/widgets/buttons/app_button.dart';
-import 'package:bagguard/features/scan/data/models/scan_device.dart';
+import 'package:bagguard/features/devices/data/models/device.dart';
 import 'package:bagguard/shared/widgets/app_bottom_action_layout.dart';
 import 'package:bagguard/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:bagguard/features/scan/presentation/bloc/scan_event.dart';
@@ -15,7 +15,7 @@ import 'package:bagguard/features/scan/presentation/widgets/discovered_device_ca
 class ScanResultView extends StatelessWidget {
   const ScanResultView({super.key, required this.devices});
 
-  final List<ScanDevice> devices;
+  final List<Device> devices;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class ScanResultView extends StatelessWidget {
 
                 return DiscoveredDeviceCard(
                   name: device.name,
-                  rssi: device.rssi,
+                  rssi: device.signalStrength!,
                   onConnect: () {
                     context.read<ScanBloc>().add(
                       ScanDeviceConnectionRequested(device: device),
