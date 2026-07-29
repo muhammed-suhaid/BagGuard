@@ -32,6 +32,7 @@ class AppIcons {
   static const add = Icons.add;
   static const edit = Icons.edit_outlined;
   static const delete = Icons.delete_outline;
+  static const image = Icons.image;
 
   // Password
   static const visibility = Icons.visibility_outlined;
@@ -52,6 +53,11 @@ class AppIcons {
   static const signal3 = Icons.signal_cellular_alt;
   static const signal2 = Icons.signal_cellular_alt_2_bar;
   static const signal1 = Icons.signal_cellular_alt_1_bar;
+
+  // Snackbar
+  static const showSuccess = Icons.check_circle_outline;
+  static const showError = Icons.error_outline;
+  static const showInfo = Icons.info_outline;
 
   // Misc
   static const location = Icons.location_on_outlined;

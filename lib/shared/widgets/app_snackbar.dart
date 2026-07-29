@@ -4,22 +4,23 @@ import 'package:bagguard/core/theme/app_radius.dart';
 import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_shadows.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
+import 'package:bagguard/core/constants/app_icons.dart';
 
 //************************* REUSABLE SNACKBAR *************************//
 class AppSnackbar {
   //************************* SUCCESS SNACKBAR *************************//
   static void showSuccess(BuildContext context, String message) {
-    _show(context, message, AppColors.success, Icons.check_circle_outline);
+    _show(context, message, AppColors.success, AppIcons.showSuccess);
   }
 
   //************************* ERROR SNACKBAR *************************//
   static void showError(BuildContext context, String message) {
-    _show(context, message, AppColors.error, Icons.error_outline);
+    _show(context, message, AppColors.error, AppIcons.showError);
   }
 
   //************************* INFO SNACKBAR *************************//
   static void showInfo(BuildContext context, String message) {
-    _show(context, message, AppColors.primary, Icons.info_outline);
+    _show(context, message, AppColors.primary, AppIcons.showInfo);
   }
 
   //************************* SNACKBAR *************************//

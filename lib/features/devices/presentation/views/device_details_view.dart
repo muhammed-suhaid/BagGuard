@@ -17,12 +17,14 @@ import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:bagguard/shared/widgets/app_indicator.dart';
 import 'package:bagguard/shared/widgets/app_list_tile.dart';
 import 'package:bagguard/core/utils/sensitivity_utils.dart';
-import 'package:bagguard/core/enums/app_button_variant.dart';
+import 'package:bagguard/shared/widgets/app_text_field.dart';
+import 'package:bagguard/shared/widgets/app_popup_menu.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/core/utils/signal_strength_utils.dart';
 import 'package:bagguard/shared/widgets/buttons/app_button.dart';
 import 'package:bagguard/features/devices/data/models/device.dart';
 import 'package:bagguard/shared/widgets/buttons/app_icon_button.dart';
+import 'package:bagguard/features/devices/data/models/device_menu_action.dart';
 import 'package:bagguard/features/devices/presentation/bloc/device_details/device_details_bloc.dart';
 import 'package:bagguard/features/devices/presentation/bloc/device_details/device_details_event.dart';
 
@@ -54,11 +56,7 @@ class DeviceDetailsView extends StatelessWidget {
                     iconSize: AppDimensions.iconLarge,
                     onPressed: context.pop,
                   ),
-                  trailing: AppIconButton(
-                    icon: const Icon(AppIcons.menu),
-                    iconSize: AppDimensions.iconLarge,
-                    onPressed: () {},
-                  ),
+                  trailing: _buildMoreMenu(context),
                 ),
 
                 const SizedBox(height: AppSpacing.lg),
@@ -250,24 +248,10 @@ class DeviceDetailsView extends StatelessWidget {
 
                       AppButton(
                         text: AppStrings.disconnectDevice,
-                        variant: AppButtonVariant.outlined,
-                        foregroundColor: AppColors.error,
+                        backgroundColor: AppColors.error,
                         onPressed: () {
                           context.read<DeviceDetailsBloc>().add(
                             const DeviceDisconnected(),
-                          );
-                        },
-                      ),
-
-                      const SizedBox(height: AppSpacing.md),
-
-                      AppButton(
-                        text: AppStrings.forgetDevice,
-                        backgroundColor: AppColors.error,
-                        leading: const Icon(AppIcons.delete),
-                        onPressed: () {
-                          context.read<DeviceDetailsBloc>().add(
-                            const DeviceForgotten(),
                           );
                         },
                       ),
@@ -282,6 +266,81 @@ class DeviceDetailsView extends StatelessWidget {
     );
   }
 
+  Widget _buildMoreMenu(BuildContext context) {
+    return AppPopupMenu<DeviceMenuAction>(
+      items: const [
+        AppPopupMenuItem(
+          value: DeviceMenuAction.rename,
+          title: AppStrings.changeDeviceName,
+          icon: AppIcons.edit,
+        ),
+
+        // AppPopupMenuItem(
+        //   value: DeviceMenuAction.changeImage,
+        //   title: AppStrings.changeImage,
+        //   icon: AppIcons.image,
+        // ),
+        AppPopupMenuItem(
+          value: DeviceMenuAction.forget,
+          title: AppStrings.forgetDevice,
+          icon: AppIcons.delete,
+          isDestructive: true,
+        ),
+      ],
+      onSelected: (action) async {
+        switch (action) {
+          case DeviceMenuAction.rename:
+            await _showRenameDialog(context);
+            break;
+
+          case DeviceMenuAction.changeImage:
+            // await _showChangeImageDialog(context);
+            break;
+
+          case DeviceMenuAction.forget:
+            await _showForgetDeviceDialog(context);
+            break;
+        }
+      },
+    );
+  }
+
+  Future<void> _showRenameDialog(BuildContext context) async {
+    final controller = TextEditingController(text: device.name);
+    final focusNode = FocusNode();
+
+    final confirmed = await AppDialog.show(
+      context,
+      title: AppStrings.renameDevice,
+      confirmText: AppStrings.save,
+      content: Padding(
+        padding: const EdgeInsets.only(top: AppSpacing.sm),
+        child: AppTextField(
+          controller: controller,
+          focusNode: focusNode,
+          hintText: AppStrings.enterDeviceName,
+          textCapitalization: TextCapitalization.words,
+          textInputAction: TextInputAction.done,
+          autofocus: true,
+        ),
+      ),
+    );
+
+    if (confirmed == true &&
+        context.mounted &&
+        controller.text.trim().isNotEmpty &&
+        controller.text.trim() != device.name) {
+      context.read<DeviceDetailsBloc>().add(
+        DeviceRenamed(name: controller.text.trim()),
+      );
+    }
+
+    focusNode.dispose();
+  }
+  // TODO: Implement a curated bag icon/category picker.
+  // Future<void> _showChangeImageDialog(BuildContext context) async {
+  // }
+
   Future<void> _showSensitivityDialog(BuildContext context) async {
     double sensitivity = device.sensitivity.toDouble();
 
@@ -291,14 +350,17 @@ class DeviceDetailsView extends StatelessWidget {
       confirmText: AppStrings.save,
       content: StatefulBuilder(
         builder: (context, setState) {
-          return AppSlider(
-            value: sensitivity,
-            label: sensitivity.round().toString(),
-            onChanged: (value) {
-              setState(() {
-                sensitivity = value;
-              });
-            },
+          return Padding(
+            padding: const EdgeInsets.only(top: AppSpacing.sm),
+            child: AppSlider(
+              value: sensitivity,
+              label: sensitivity.round().toString(),
+              onChanged: (value) {
+                setState(() {
+                  sensitivity = value;
+                });
+              },
+            ),
           );
         },
       ),
@@ -309,6 +371,27 @@ class DeviceDetailsView extends StatelessWidget {
       context.read<DeviceDetailsBloc>().add(
         DeviceSensitivityChanged(value: sensitivity.round()),
       );
+    }
+  }
+
+  Future<void> _showForgetDeviceDialog(BuildContext context) async {
+    final confirmed = await AppDialog.show(
+      context,
+      title: AppStrings.forgetDevice,
+      confirmText: AppStrings.forget,
+      confirmColor: AppColors.error,
+      content: Padding(
+        padding: const EdgeInsets.only(top: AppSpacing.sm),
+        child: Text(
+          AppStrings.forgetDeviceMessage,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+      ),
+    );
+
+    if (confirmed == true && context.mounted) {
+      context.read<DeviceDetailsBloc>().add(const DeviceForgotten());
     }
   }
 }

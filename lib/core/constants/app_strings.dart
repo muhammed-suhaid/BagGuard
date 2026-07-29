@@ -27,6 +27,8 @@ class AppStrings {
   static const loadingDevice = 'Loading device...';
   static const loadingDeviceDescription =
       'Please wait while we prepare your device.';
+  static const renameDevice = 'Rename Device';
+  static const enterDeviceName = 'Enter a device name';
 
   // Dashboard
   static const quickActions = 'Quick Actions';
@@ -66,6 +68,8 @@ class AppStrings {
   static const testAlarm = 'Test Alarm';
   static const forgetDevice = 'Forget Device';
   static const disconnectDevice = 'Disconnect Device';
+  static const changeDeviceName = 'Change Device Name';
+  static const changeImage = 'Change Image';
 
   // Page Not Found
   static const pageNotFound = 'Page Not Found';
@@ -112,6 +116,12 @@ class AppStrings {
       'Failed to disconnect device. Please try again.';
   static const failedToForgetDevice =
       'Failed to remove device. Please try again.';
+
+  // Confirmation Dialog
+  static const String forgetDeviceMessage =
+      'Are you sure you want to forget this device? '
+      'You will need to pair it again before using it.';
+  static const String forget = 'Forget';
 
   // Permission
   static const permissionsRequired = 'Permissions Required';
