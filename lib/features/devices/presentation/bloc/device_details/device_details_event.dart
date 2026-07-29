@@ -43,13 +43,13 @@ final class DeviceRenamed extends DeviceDetailsEvent {
   List<Object?> get props => [name];
 }
 
-final class DeviceImageChanged extends DeviceDetailsEvent {
-  const DeviceImageChanged({required this.imagePath});
+final class DeviceBagTypeChanged extends DeviceDetailsEvent {
+  const DeviceBagTypeChanged({required this.bagType});
 
-  final String imagePath;
+  final String bagType;
 
   @override
-  List<Object?> get props => [imagePath];
+  List<Object?> get props => [bagType];
 }
 
 final class DeviceDisconnected extends DeviceDetailsEvent {

@@ -17,7 +17,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
     on<DeviceProtectionToggled>(_onProtectionToggled);
     on<DeviceSensitivityChanged>(_onSensitivityChanged);
     on<DeviceRenamed>(_onRenamed);
-    on<DeviceImageChanged>(_onImageChanged);
+    on<DeviceBagTypeChanged>(_onBagTypeChanged);
     on<DeviceDisconnected>(_onDisconnected);
     on<DeviceForgotten>(_onForgotten);
   }
@@ -62,10 +62,8 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
         protectionEnabled: event.enabled,
       );
 
-      emit(DeviceDetailsLoaded(device: updatedDevice));
-
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: updatedDevice,
           action: DeviceDetailsAction.protectionChanged,
           status: DeviceDetailsActionStatus.success,
@@ -76,7 +74,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
       );
     } catch (_) {
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: currentState.device,
           action: DeviceDetailsAction.protectionChanged,
           status: DeviceDetailsActionStatus.failure,
@@ -106,10 +104,8 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
         sensitivity: event.value,
       );
 
-      emit(DeviceDetailsLoaded(device: updatedDevice));
-
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: updatedDevice,
           action: DeviceDetailsAction.sensitivityChanged,
           status: DeviceDetailsActionStatus.success,
@@ -118,7 +114,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
       );
     } catch (_) {
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: currentState.device,
           action: DeviceDetailsAction.sensitivityChanged,
           status: DeviceDetailsActionStatus.failure,
@@ -143,10 +139,8 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
 
       final updatedDevice = currentState.device.copyWith(name: event.name);
 
-      emit(DeviceDetailsLoaded(device: updatedDevice));
-
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: updatedDevice,
           action: DeviceDetailsAction.renamed,
           status: DeviceDetailsActionStatus.success,
@@ -155,7 +149,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
       );
     } catch (_) {
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: currentState.device,
           action: DeviceDetailsAction.renamed,
           status: DeviceDetailsActionStatus.failure,
@@ -165,8 +159,8 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
     }
   }
 
-  Future<void> _onImageChanged(
-    DeviceImageChanged event,
+  Future<void> _onBagTypeChanged(
+    DeviceBagTypeChanged event,
     Emitter<DeviceDetailsState> emit,
   ) async {
     final currentState = state;
@@ -175,32 +169,27 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
       return;
     }
     try {
-      await _deviceRepository.updateDeviceImage(
-        currentState.device,
-        event.imagePath,
-      );
+      await _deviceRepository.updateBagType(currentState.device, event.bagType);
 
       final updatedDevice = currentState.device.copyWith(
-        imagePath: event.imagePath,
+        bagType: event.bagType,
       );
 
-      emit(DeviceDetailsLoaded(device: updatedDevice));
-
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: updatedDevice,
-          action: DeviceDetailsAction.imageChanged,
+          action: DeviceDetailsAction.bagTypeChanged,
           status: DeviceDetailsActionStatus.success,
-          message: AppStrings.deviceImageChangedSuccessfully,
+          message: AppStrings.deviceBagTypeUpdatedSuccessfully,
         ),
       );
     } catch (_) {
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: currentState.device,
-          action: DeviceDetailsAction.imageChanged,
+          action: DeviceDetailsAction.bagTypeChanged,
           status: DeviceDetailsActionStatus.failure,
-          message: AppStrings.failedToUpdateDeviceImage,
+          message: AppStrings.failedToUpdateDeviceBagType,
         ),
       );
     }
@@ -220,10 +209,8 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
 
       final updatedDevice = currentState.device.copyWith(isConnected: false);
 
-      emit(DeviceDetailsLoaded(device: updatedDevice));
-
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: updatedDevice,
           action: DeviceDetailsAction.disconnected,
           status: DeviceDetailsActionStatus.success,
@@ -232,7 +219,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
       );
     } catch (_) {
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: currentState.device,
           action: DeviceDetailsAction.disconnected,
           status: DeviceDetailsActionStatus.failure,
@@ -255,7 +242,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
       await _deviceRepository.forgetDevice(currentState.device);
 
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: currentState.device,
           action: DeviceDetailsAction.forgotten,
           status: DeviceDetailsActionStatus.success,
@@ -264,7 +251,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
       );
     } catch (_) {
       emit(
-        DeviceDetailsActionState(
+        DeviceDetailsLoadedAction(
           device: currentState.device,
           action: DeviceDetailsAction.forgotten,
           status: DeviceDetailsActionStatus.failure,

@@ -69,7 +69,7 @@ class AppStrings {
   static const forgetDevice = 'Forget Device';
   static const disconnectDevice = 'Disconnect Device';
   static const changeDeviceName = 'Change Device Name';
-  static const changeImage = 'Change Image';
+  static const changeBagType = 'Change Bag Type';
 
   // Page Not Found
   static const pageNotFound = 'Page Not Found';
@@ -85,8 +85,8 @@ class AppStrings {
   static const sensitivityUpdatedSuccessfully =
       'Sensitivity updated successfully.';
   static const deviceRenamedSuccessfully = 'Device renamed successfully.';
-  static const deviceImageChangedSuccessfully =
-      'Device image updated successfully.';
+  static const deviceBagTypeUpdatedSuccessfully =
+      'Device bag type updated successfully.';
   static const deviceDisconnectedSuccessfully =
       'Device disconnected successfully.';
   static const deviceForgottenSuccessfully = 'Device removed successfully.';
@@ -110,8 +110,8 @@ class AppStrings {
       'Failed to update sensitivity. Please try again.';
   static const failedToRenameDevice =
       'Failed to rename device. Please try again.';
-  static const failedToUpdateDeviceImage =
-      'Failed to update device image. Please try again.';
+  static const failedToUpdateDeviceBagType =
+      'Failed to update device bag type. Please try again.';
   static const failedToDisconnectDevice =
       'Failed to disconnect device. Please try again.';
   static const failedToForgetDevice =

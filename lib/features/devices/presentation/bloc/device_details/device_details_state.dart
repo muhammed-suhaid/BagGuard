@@ -6,7 +6,7 @@ enum DeviceDetailsAction {
   protectionChanged,
   sensitivityChanged,
   renamed,
-  imageChanged,
+  bagTypeChanged,
   disconnected,
   forgotten,
 }
@@ -46,19 +46,18 @@ final class DeviceDetailsError extends DeviceDetailsState {
   List<Object?> get props => [message];
 }
 
-final class DeviceDetailsActionState extends DeviceDetailsState {
-  const DeviceDetailsActionState({
-    required this.device,
+final class DeviceDetailsLoadedAction extends DeviceDetailsLoaded {
+  const DeviceDetailsLoadedAction({
+    required super.device,
     required this.action,
     required this.status,
     this.message,
   });
 
-  final Device device;
   final DeviceDetailsAction action;
   final DeviceDetailsActionStatus status;
   final String? message;
 
   @override
-  List<Object?> get props => [device, action, status, message];
+  List<Object?> get props => [...super.props, action, status, message];
 }

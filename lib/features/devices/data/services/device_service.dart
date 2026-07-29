@@ -41,7 +41,7 @@ class DeviceService {
     await Future.delayed(const Duration(milliseconds: 300));
   }
 
-  Future<void> updateDeviceImage(Device device, String imagePath) async {
+  Future<void> updateBagType(Device device, String bagType) async {
     // TODO: Replace with local image storage.
 
     await Future.delayed(const Duration(milliseconds: 300));

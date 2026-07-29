@@ -1,1 +1,1 @@
-enum DeviceMenuAction { rename, changeImage, forget }
+enum DeviceMenuAction { rename, changeBagType, forget }

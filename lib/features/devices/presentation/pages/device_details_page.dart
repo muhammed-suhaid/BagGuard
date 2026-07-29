@@ -21,7 +21,7 @@ class DeviceDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<DeviceDetailsBloc, DeviceDetailsState>(
       listener: (context, state) {
-        if (state is! DeviceDetailsActionState) {
+        if (state is! DeviceDetailsLoadedAction) {
           return;
         }
 
@@ -55,9 +55,6 @@ class DeviceDetailsPage extends StatelessWidget {
             );
 
           case DeviceDetailsLoaded():
-            return DeviceDetailsView(device: state.device);
-
-          case DeviceDetailsActionState():
             return DeviceDetailsView(device: state.device);
 
           case DeviceDetailsError():

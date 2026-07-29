@@ -276,9 +276,9 @@ class DeviceDetailsView extends StatelessWidget {
         ),
 
         // AppPopupMenuItem(
-        //   value: DeviceMenuAction.changeImage,
-        //   title: AppStrings.changeImage,
-        //   icon: AppIcons.image,
+        //   value: DeviceMenuAction.changeBagType,
+        //   title: AppStrings.changeBagType,
+        //   icon: AppIcons.bag,
         // ),
         AppPopupMenuItem(
           value: DeviceMenuAction.forget,
@@ -293,8 +293,8 @@ class DeviceDetailsView extends StatelessWidget {
             await _showRenameDialog(context);
             break;
 
-          case DeviceMenuAction.changeImage:
-            // await _showChangeImageDialog(context);
+          case DeviceMenuAction.changeBagType:
+            // await _showChangeBagTypeDialog(context);
             break;
 
           case DeviceMenuAction.forget:
@@ -338,7 +338,7 @@ class DeviceDetailsView extends StatelessWidget {
     focusNode.dispose();
   }
   // TODO: Implement a curated bag icon/category picker.
-  // Future<void> _showChangeImageDialog(BuildContext context) async {
+  // Future<void> _showChangeBagTypeDialog(BuildContext context) async {
   // }
 
   Future<void> _showSensitivityDialog(BuildContext context) async {

@@ -32,7 +32,7 @@ class AppIcons {
   static const add = Icons.add;
   static const edit = Icons.edit_outlined;
   static const delete = Icons.delete_outline;
-  static const image = Icons.image;
+  static const bag = Icons.backpack;
 
   // Password
   static const visibility = Icons.visibility_outlined;

@@ -28,8 +28,8 @@ class DeviceRepository {
     await _deviceService.renameDevice(device, name);
   }
 
-  Future<void> updateDeviceImage(Device device, String imagePath) async {
-    await _deviceService.updateDeviceImage(device, imagePath);
+  Future<void> updateBagType(Device device, String bagType) async {
+    await _deviceService.updateBagType(device, bagType);
   }
 
   Future<void> forgetDevice(Device device) async {
