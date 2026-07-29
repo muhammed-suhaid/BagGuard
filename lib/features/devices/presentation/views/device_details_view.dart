@@ -8,6 +8,8 @@ import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/shared/widgets/app_card.dart';
 import 'package:bagguard/core/utils/battery_utils.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
+import 'package:bagguard/shared/widgets/app_dialog.dart';
+import 'package:bagguard/shared/widgets/app_slider.dart';
 import 'package:bagguard/shared/widgets/app_switch.dart';
 import 'package:bagguard/shared/widgets/app_header.dart';
 import 'package:bagguard/core/utils/date_time_utils.dart';
@@ -238,9 +240,7 @@ class DeviceDetailsView extends StatelessWidget {
                                   const Icon(Icons.chevron_right),
                                 ],
                               ),
-                              onTap: () {
-                                // TODO: Open sensitivity selection dialog.
-                              },
+                              onTap: () => _showSensitivityDialog(context),
                             ),
                           ],
                         ),
@@ -280,5 +280,35 @@ class DeviceDetailsView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _showSensitivityDialog(BuildContext context) async {
+    double sensitivity = device.sensitivity.toDouble();
+
+    final confirmed = await AppDialog.show(
+      context,
+      title: AppStrings.sensitivity,
+      confirmText: AppStrings.save,
+      content: StatefulBuilder(
+        builder: (context, setState) {
+          return AppSlider(
+            value: sensitivity,
+            label: sensitivity.round().toString(),
+            onChanged: (value) {
+              setState(() {
+                sensitivity = value;
+              });
+            },
+          );
+        },
+      ),
+    );
+    if (confirmed == true &&
+        context.mounted &&
+        sensitivity.round() != device.sensitivity) {
+      context.read<DeviceDetailsBloc>().add(
+        DeviceSensitivityChanged(value: sensitivity.round()),
+      );
+    }
   }
 }
