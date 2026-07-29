@@ -63,6 +63,17 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
       );
 
       emit(DeviceDetailsLoaded(device: updatedDevice));
+
+      emit(
+        DeviceDetailsActionState(
+          device: updatedDevice,
+          action: DeviceDetailsAction.protectionChanged,
+          status: DeviceDetailsActionStatus.success,
+          message: event.enabled
+              ? AppStrings.protectionEnabledSuccessfully
+              : AppStrings.protectionDisabledSuccessfully,
+        ),
+      );
     } catch (_) {
       emit(
         DeviceDetailsActionState(
@@ -96,6 +107,15 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
       );
 
       emit(DeviceDetailsLoaded(device: updatedDevice));
+
+      emit(
+        DeviceDetailsActionState(
+          device: updatedDevice,
+          action: DeviceDetailsAction.sensitivityChanged,
+          status: DeviceDetailsActionStatus.success,
+          message: AppStrings.sensitivityUpdatedSuccessfully,
+        ),
+      );
     } catch (_) {
       emit(
         DeviceDetailsActionState(
@@ -130,6 +150,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
           device: updatedDevice,
           action: DeviceDetailsAction.renamed,
           status: DeviceDetailsActionStatus.success,
+          message: AppStrings.deviceRenamedSuccessfully,
         ),
       );
     } catch (_) {
@@ -170,6 +191,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
           device: updatedDevice,
           action: DeviceDetailsAction.imageChanged,
           status: DeviceDetailsActionStatus.success,
+          message: AppStrings.deviceImageChangedSuccessfully,
         ),
       );
     } catch (_) {
@@ -178,7 +200,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
           device: currentState.device,
           action: DeviceDetailsAction.imageChanged,
           status: DeviceDetailsActionStatus.failure,
-          message: AppStrings.failedToChangeImage,
+          message: AppStrings.failedToUpdateDeviceImage,
         ),
       );
     }
@@ -205,6 +227,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
           device: updatedDevice,
           action: DeviceDetailsAction.disconnected,
           status: DeviceDetailsActionStatus.success,
+          message: AppStrings.deviceDisconnectedSuccessfully,
         ),
       );
     } catch (_) {
@@ -213,6 +236,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
           device: currentState.device,
           action: DeviceDetailsAction.disconnected,
           status: DeviceDetailsActionStatus.failure,
+          message: AppStrings.failedToDisconnectDevice,
         ),
       );
     }
@@ -235,6 +259,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
           device: currentState.device,
           action: DeviceDetailsAction.forgotten,
           status: DeviceDetailsActionStatus.success,
+          message: AppStrings.deviceForgottenSuccessfully,
         ),
       );
     } catch (_) {

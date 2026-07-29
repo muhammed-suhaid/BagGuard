@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bagguard/core/constants/app_strings.dart';
+import 'package:bagguard/shared/widgets/app_snackbar.dart';
 import 'package:bagguard/shared/widgets/app_error_view.dart';
 import 'package:bagguard/shared/widgets/app_loading_view.dart';
 import 'package:bagguard/features/devices/presentation/views/device_details_view.dart';
@@ -25,50 +26,21 @@ class DeviceDetailsPage extends StatelessWidget {
         }
 
         switch (state.action) {
-          //TODO: Add snackbars
-          case DeviceDetailsAction.protectionChanged:
-            if (state.status == DeviceDetailsActionStatus.failure) {
-              // Show snackbar
-              return;
-            }
-
-          case DeviceDetailsAction.sensitivityChanged:
-            if (state.status == DeviceDetailsActionStatus.failure) {
-              // Show snackbar
-              return;
-            }
-
-          case DeviceDetailsAction.renamed:
-            if (state.status == DeviceDetailsActionStatus.success) {
-              // Success snackbar
-              return;
-            }
-            // Error snackbar
-            return;
-
-          case DeviceDetailsAction.imageChanged:
-            if (state.status == DeviceDetailsActionStatus.success) {
-              // Success snackbar
-              return;
-            }
-            // Error snackbar
-            return;
-
-          case DeviceDetailsAction.disconnected:
-            if (state.status == DeviceDetailsActionStatus.success) {
-              // Success snackbar
-              return;
-            }
-            // Error snackbar
-            return;
-
           case DeviceDetailsAction.forgotten:
             if (state.status == DeviceDetailsActionStatus.success) {
+              AppSnackbar.showSuccess(context, state.message!);
               context.pop();
-              return;
+            } else {
+              AppSnackbar.showError(context, state.message!);
             }
-            // Error snackbar
             return;
+
+          default:
+            if (state.status == DeviceDetailsActionStatus.success) {
+              AppSnackbar.showSuccess(context, state.message!);
+            } else {
+              AppSnackbar.showError(context, state.message!);
+            }
         }
       },
       builder: (context, state) {

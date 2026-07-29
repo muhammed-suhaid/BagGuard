@@ -73,7 +73,19 @@ class AppStrings {
       'The page you are looking for does not exist.';
 
   // Success
-  static const connectedSuccessfully = 'Connected Successfully!';
+  static const connectedSuccessfully = 'Connected Successfully';
+  static const protectionEnabledSuccessfully =
+      'Protection enabled successfully.';
+  static const protectionDisabledSuccessfully =
+      'Protection disabled successfully.';
+  static const sensitivityUpdatedSuccessfully =
+      'Sensitivity updated successfully.';
+  static const deviceRenamedSuccessfully = 'Device renamed successfully.';
+  static const deviceImageChangedSuccessfully =
+      'Device image updated successfully.';
+  static const deviceDisconnectedSuccessfully =
+      'Device disconnected successfully.';
+  static const deviceForgottenSuccessfully = 'Device removed successfully.';
 
   // Errors
   static const unavailable = 'Unavailable';
@@ -89,17 +101,17 @@ class AppStrings {
   static const unableToCancelConnection =
       'Unable to cancel the connection. Please try again.';
   static const failedToUpdateProtection =
-      'Unable to update the protection. Please try again.';
+      'Failed to update protection. Please try again.';
   static const failedToUpdateSensitivity =
-      'Unable to update the sensitivity. Please try again.';
+      'Failed to update sensitivity. Please try again.';
   static const failedToRenameDevice =
-      'Unable to rename the Device. Please try again.';
-  static const failedToChangeImage =
-      'Unable to change image. Please try again.';
+      'Failed to rename device. Please try again.';
+  static const failedToUpdateDeviceImage =
+      'Failed to update device image. Please try again.';
   static const failedToDisconnectDevice =
-      'Unable to disconnect the device. Please try again.';
+      'Failed to disconnect device. Please try again.';
   static const failedToForgetDevice =
-      'Unable to forget the device. Please try again.';
+      'Failed to remove device. Please try again.';
 
   // Permission
   static const permissionsRequired = 'Permissions Required';
