@@ -16,6 +16,14 @@ final class DeviceDetailsStarted extends DeviceDetailsEvent {
   List<Object?> get props => [deviceId];
 }
 
+final class DeviceDisconnected extends DeviceDetailsEvent {
+  const DeviceDisconnected();
+}
+
+class DeviceConnected extends DeviceDetailsEvent {
+  const DeviceConnected();
+}
+
 final class DeviceProtectionToggled extends DeviceDetailsEvent {
   const DeviceProtectionToggled({required this.enabled});
 
@@ -50,10 +58,6 @@ final class DeviceBagTypeChanged extends DeviceDetailsEvent {
 
   @override
   List<Object?> get props => [bagType];
-}
-
-final class DeviceDisconnected extends DeviceDetailsEvent {
-  const DeviceDisconnected();
 }
 
 final class DeviceForgotten extends DeviceDetailsEvent {

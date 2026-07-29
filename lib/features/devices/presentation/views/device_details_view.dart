@@ -247,12 +247,22 @@ class DeviceDetailsView extends StatelessWidget {
                       const SizedBox(height: AppSpacing.xl),
 
                       AppButton(
-                        text: AppStrings.disconnectDevice,
-                        backgroundColor: AppColors.error,
+                        text: device.isConnected
+                            ? AppStrings.disconnectDevice
+                            : AppStrings.connectDevice,
+                        backgroundColor: device.isConnected
+                            ? AppColors.error
+                            : AppColors.success,
                         onPressed: () {
-                          context.read<DeviceDetailsBloc>().add(
-                            const DeviceDisconnected(),
-                          );
+                          if (device.isConnected) {
+                            context.read<DeviceDetailsBloc>().add(
+                              const DeviceDisconnected(),
+                            );
+                          } else {
+                            context.read<DeviceDetailsBloc>().add(
+                              const DeviceConnected(),
+                            );
+                          }
                         },
                       ),
                     ],

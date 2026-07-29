@@ -14,11 +14,12 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
        _scanRepository = scanRepository,
        super(const DeviceDetailsInitial()) {
     on<DeviceDetailsStarted>(_onStarted);
+    on<DeviceConnected>(_onConnected);
+    on<DeviceDisconnected>(_onDisconnected);
     on<DeviceProtectionToggled>(_onProtectionToggled);
     on<DeviceSensitivityChanged>(_onSensitivityChanged);
     on<DeviceRenamed>(_onRenamed);
     on<DeviceBagTypeChanged>(_onBagTypeChanged);
-    on<DeviceDisconnected>(_onDisconnected);
     on<DeviceForgotten>(_onForgotten);
   }
 
@@ -39,6 +40,76 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
       emit(DeviceDetailsLoaded(device: device));
     } catch (_) {
       emit(DeviceDetailsError(AppStrings.somethingWentWrong));
+    }
+  }
+
+  Future<void> _onConnected(
+    DeviceConnected event,
+    Emitter<DeviceDetailsState> emit,
+  ) async {
+    final currentState = state;
+
+    if (currentState is! DeviceDetailsLoaded) {
+      return;
+    }
+
+    try {
+      await _scanRepository.connectDevice(currentState.device);
+
+      final updatedDevice = currentState.device.copyWith(isConnected: true);
+
+      emit(
+        DeviceDetailsLoadedAction(
+          device: updatedDevice,
+          action: DeviceDetailsAction.connected,
+          status: DeviceDetailsActionStatus.success,
+          message: AppStrings.deviceConnectedSuccessfully,
+        ),
+      );
+    } catch (_) {
+      emit(
+        DeviceDetailsLoadedAction(
+          device: currentState.device,
+          action: DeviceDetailsAction.connected,
+          status: DeviceDetailsActionStatus.failure,
+          message: AppStrings.unableToConnectDevice,
+        ),
+      );
+    }
+  }
+
+  Future<void> _onDisconnected(
+    DeviceDisconnected event,
+    Emitter<DeviceDetailsState> emit,
+  ) async {
+    final currentState = state;
+
+    if (currentState is! DeviceDetailsLoaded) {
+      return;
+    }
+
+    try {
+      await _scanRepository.disconnectDevice(currentState.device);
+
+      final updatedDevice = currentState.device.copyWith(isConnected: false);
+
+      emit(
+        DeviceDetailsLoadedAction(
+          device: updatedDevice,
+          action: DeviceDetailsAction.disconnected,
+          status: DeviceDetailsActionStatus.success,
+          message: AppStrings.deviceDisconnectedSuccessfully,
+        ),
+      );
+    } catch (_) {
+      emit(
+        DeviceDetailsLoadedAction(
+          device: currentState.device,
+          action: DeviceDetailsAction.disconnected,
+          status: DeviceDetailsActionStatus.failure,
+          message: AppStrings.unableToDisconnectDevice,
+        ),
+      );
     }
   }
 
@@ -168,6 +239,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
     if (currentState is! DeviceDetailsLoaded) {
       return;
     }
+
     try {
       await _deviceRepository.updateBagType(currentState.device, event.bagType);
 
@@ -180,7 +252,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
           device: updatedDevice,
           action: DeviceDetailsAction.bagTypeChanged,
           status: DeviceDetailsActionStatus.success,
-          message: AppStrings.deviceBagTypeUpdatedSuccessfully,
+          message: AppStrings.bagTypeUpdatedSuccessfully,
         ),
       );
     } catch (_) {
@@ -189,41 +261,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
           device: currentState.device,
           action: DeviceDetailsAction.bagTypeChanged,
           status: DeviceDetailsActionStatus.failure,
-          message: AppStrings.failedToUpdateDeviceBagType,
-        ),
-      );
-    }
-  }
-
-  Future<void> _onDisconnected(
-    DeviceDisconnected event,
-    Emitter<DeviceDetailsState> emit,
-  ) async {
-    final currentState = state;
-
-    if (currentState is! DeviceDetailsLoaded) {
-      return;
-    }
-    try {
-      await _scanRepository.disconnectDevice(currentState.device);
-
-      final updatedDevice = currentState.device.copyWith(isConnected: false);
-
-      emit(
-        DeviceDetailsLoadedAction(
-          device: updatedDevice,
-          action: DeviceDetailsAction.disconnected,
-          status: DeviceDetailsActionStatus.success,
-          message: AppStrings.deviceDisconnectedSuccessfully,
-        ),
-      );
-    } catch (_) {
-      emit(
-        DeviceDetailsLoadedAction(
-          device: currentState.device,
-          action: DeviceDetailsAction.disconnected,
-          status: DeviceDetailsActionStatus.failure,
-          message: AppStrings.failedToDisconnectDevice,
+          message: AppStrings.failedToUpdateBagType,
         ),
       );
     }
@@ -238,6 +276,7 @@ class DeviceDetailsBloc extends Bloc<DeviceDetailsEvent, DeviceDetailsState> {
     if (currentState is! DeviceDetailsLoaded) {
       return;
     }
+
     try {
       await _deviceRepository.forgetDevice(currentState.device);
 

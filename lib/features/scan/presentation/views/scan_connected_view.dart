@@ -43,7 +43,7 @@ class ScanConnectedView extends StatelessWidget {
             const SizedBox(height: AppSpacing.sm),
 
             Text(
-              AppStrings.connectedSuccessfully,
+              AppStrings.deviceConnectedSuccessfully,
               textAlign: TextAlign.center,
               style: textTheme.headlineMedium,
             ),

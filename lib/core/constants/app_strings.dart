@@ -68,6 +68,7 @@ class AppStrings {
   static const testAlarm = 'Test Alarm';
   static const forgetDevice = 'Forget Device';
   static const disconnectDevice = 'Disconnect Device';
+  static const connectDevice = 'Connect Device';
   static const changeDeviceName = 'Change Device Name';
   static const changeBagType = 'Change Bag Type';
 
@@ -77,7 +78,7 @@ class AppStrings {
       'The page you are looking for does not exist.';
 
   // Success
-  static const connectedSuccessfully = 'Connected Successfully';
+  static const deviceConnectedSuccessfully = 'Device connected successfully.';
   static const protectionEnabledSuccessfully =
       'Protection enabled successfully.';
   static const protectionDisabledSuccessfully =
@@ -85,8 +86,7 @@ class AppStrings {
   static const sensitivityUpdatedSuccessfully =
       'Sensitivity updated successfully.';
   static const deviceRenamedSuccessfully = 'Device renamed successfully.';
-  static const deviceBagTypeUpdatedSuccessfully =
-      'Device bag type updated successfully.';
+  static const bagTypeUpdatedSuccessfully = 'Bag type updated successfully.';
   static const deviceDisconnectedSuccessfully =
       'Device disconnected successfully.';
   static const deviceForgottenSuccessfully = 'Device removed successfully.';
@@ -100,22 +100,24 @@ class AppStrings {
       'Unable to request permissions. Please try again.';
   static const unableToCheckBluetoothStatus =
       'Unable to check Bluetooth status. Please try again.';
-  static const unableToScanNearbyDevices = 'Unable to scan nearby devices.';
-  static const unableToConnectDevice = 'Unable to connect to device.';
+  static const unableToScanNearbyDevices =
+      'Unable to scan nearby devices. Please try again.';
+  static const unableToConnectDevice =
+      'Unable to connect to the device. Please try again.';
   static const unableToCancelConnection =
       'Unable to cancel the connection. Please try again.';
+  static const unableToDisconnectDevice =
+      'Unable to disconnect the device. Please try again.';
   static const failedToUpdateProtection =
       'Failed to update protection. Please try again.';
   static const failedToUpdateSensitivity =
       'Failed to update sensitivity. Please try again.';
   static const failedToRenameDevice =
-      'Failed to rename device. Please try again.';
-  static const failedToUpdateDeviceBagType =
-      'Failed to update device bag type. Please try again.';
-  static const failedToDisconnectDevice =
-      'Failed to disconnect device. Please try again.';
+      'Failed to rename the device. Please try again.';
+  static const failedToUpdateBagType =
+      'Failed to update the bag type. Please try again.';
   static const failedToForgetDevice =
-      'Failed to remove device. Please try again.';
+      'Failed to remove the device. Please try again.';
 
   // Confirmation Dialog
   static const String forgetDeviceMessage =

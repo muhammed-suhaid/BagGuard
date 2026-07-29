@@ -3,11 +3,12 @@ import 'package:equatable/equatable.dart';
 import 'package:bagguard/features/devices/data/models/device.dart';
 
 enum DeviceDetailsAction {
+  connected,
+  disconnected,
   protectionChanged,
   sensitivityChanged,
   renamed,
   bagTypeChanged,
-  disconnected,
   forgotten,
 }
 
