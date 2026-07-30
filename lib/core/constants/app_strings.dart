@@ -102,6 +102,8 @@ class AppStrings {
       'Unable to check Bluetooth status. Please try again.';
   static const unableToScanNearbyDevices =
       'Unable to scan nearby devices. Please try again.';
+  static const unableToLoadDevices =
+      'Unable to load devices. Please try again.';
   static const unableToConnectDevice =
       'Unable to connect to the device. Please try again.';
   static const unableToCancelConnection =

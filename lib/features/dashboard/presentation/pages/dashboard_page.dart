@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bagguard/core/constants/app_strings.dart';
+import 'package:bagguard/shared/widgets/app_snackbar.dart';
 import 'package:bagguard/shared/widgets/app_error_view.dart';
 import 'package:bagguard/shared/widgets/app_loading_view.dart';
 import 'package:bagguard/features/dashboard/presentation/bloc/dashboard_bloc.dart';
@@ -15,7 +16,18 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DashboardBloc, DashboardState>(
+    return BlocConsumer<DashboardBloc, DashboardState>(
+      listener: (context, state) {
+        if (state is! DashboardLoadedAction) {
+          return;
+        }
+
+        if (state.status == DashboardActionStatus.success) {
+          AppSnackbar.showSuccess(context, state.message!);
+        } else {
+          AppSnackbar.showError(context, state.message!);
+        }
+      },
       builder: (context, state) {
         switch (state) {
           case DashboardInitial():

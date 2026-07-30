@@ -25,7 +25,7 @@ class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
 
       emit(DevicesLoaded(devices: devices));
     } catch (_) {
-      emit(const DevicesError(AppStrings.somethingWentWrong));
+      emit(const DevicesError(AppStrings.unableToLoadDevices));
     }
   }
 }

@@ -6,11 +6,9 @@ import 'package:bagguard/core/theme/app_colors.dart';
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/shared/widgets/app_card.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
-import 'package:bagguard/shared/widgets/app_slider.dart';
 import 'package:bagguard/shared/widgets/app_header.dart';
 import 'package:bagguard/shared/widgets/app_switch.dart';
 import 'package:bagguard/core/constants/app_strings.dart';
-import 'package:bagguard/core/utils/sensitivity_utils.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/app_quick_action.dart';
 import 'package:bagguard/shared/widgets/app_section_header.dart';
@@ -19,6 +17,7 @@ import 'package:bagguard/shared/widgets/buttons/app_icon_button.dart';
 import 'package:bagguard/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:bagguard/features/dashboard/presentation/bloc/dashboard_event.dart';
 import 'package:bagguard/features/dashboard/presentation/widgets/device_carousel.dart';
+import 'package:bagguard/features/dashboard/presentation/widgets/sensitivity_card.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({
@@ -111,54 +110,9 @@ class DashboardView extends StatelessWidget {
 
                     const SizedBox(height: AppSpacing.lg),
 
-                    AppCard(
-                      child: Column(
-                        children: [
-                          AppSectionHeader(
-                            title: AppStrings.sensitivity,
-                            action: Text(
-                              SensitivityUtils.label(
-                                isAddDeviceSelected
-                                    ? 50
-                                    : selectedDevice.sensitivity,
-                              ),
-                            ),
-                          ),
-
-                          const SizedBox(height: AppSpacing.md),
-
-                          AppSlider(
-                            value:
-                                (isAddDeviceSelected
-                                        ? 50
-                                        : selectedDevice.sensitivity)
-                                    .toDouble(),
-                            label:
-                                (isAddDeviceSelected
-                                        ? 50
-                                        : selectedDevice.sensitivity)
-                                    .toString(),
-                            onChanged: isAddDeviceSelected
-                                ? null
-                                : (value) {
-                                    context.read<DashboardBloc>().add(
-                                      SensitivityChanged(value: value.round()),
-                                    );
-                                  },
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(AppStrings.low, style: textTheme.bodyMedium),
-                              Text(
-                                AppStrings.high,
-                                style: textTheme.bodyMedium,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                    SensitivityCard(
+                      device: selectedDevice,
+                      enabled: !isAddDeviceSelected,
                     ),
 
                     const SizedBox(height: AppSpacing.xl),

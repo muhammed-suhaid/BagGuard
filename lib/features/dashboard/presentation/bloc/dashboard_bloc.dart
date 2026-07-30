@@ -49,26 +49,46 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       return;
     }
 
-    await _deviceRepository.updateProtection(
-      currentState.selectedDevice,
-      event.enabled,
-    );
+    try {
+      await _deviceRepository.updateProtection(
+        currentState.selectedDevice,
+        event.enabled,
+      );
 
-    final updatedDevice = currentState.selectedDevice.copyWith(
-      protectionEnabled: event.enabled,
-    );
+      final updatedDevice = currentState.selectedDevice.copyWith(
+        protectionEnabled: event.enabled,
+      );
 
-    final updatedDevices = currentState.devices
-        .map((device) => device.id == updatedDevice.id ? updatedDevice : device)
-        .toList();
+      final updatedDevices = currentState.devices
+          .map(
+            (device) => device.id == updatedDevice.id ? updatedDevice : device,
+          )
+          .toList();
 
-    emit(
-      DashboardLoaded(
-        devices: updatedDevices,
-        selectedDevice: updatedDevice,
-        isAddDeviceSelected: currentState.isAddDeviceSelected,
-      ),
-    );
+      emit(
+        DashboardLoadedAction(
+          devices: updatedDevices,
+          selectedDevice: updatedDevice,
+          isAddDeviceSelected: currentState.isAddDeviceSelected,
+          action: DashboardAction.protectionChanged,
+          status: DashboardActionStatus.success,
+          message: event.enabled
+              ? AppStrings.protectionEnabledSuccessfully
+              : AppStrings.protectionDisabledSuccessfully,
+        ),
+      );
+    } catch (_) {
+      emit(
+        DashboardLoadedAction(
+          devices: currentState.devices,
+          selectedDevice: currentState.selectedDevice,
+          isAddDeviceSelected: currentState.isAddDeviceSelected,
+          action: DashboardAction.protectionChanged,
+          status: DashboardActionStatus.failure,
+          message: AppStrings.failedToUpdateProtection,
+        ),
+      );
+    }
   }
 
   Future<void> _onSensitivityChanged(
@@ -81,26 +101,44 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       return;
     }
 
-    await _deviceRepository.updateSensitivity(
-      currentState.selectedDevice,
-      event.value,
-    );
+    try {
+      await _deviceRepository.updateSensitivity(
+        currentState.selectedDevice,
+        event.value,
+      );
 
-    final updatedDevice = currentState.selectedDevice.copyWith(
-      sensitivity: event.value,
-    );
+      final updatedDevice = currentState.selectedDevice.copyWith(
+        sensitivity: event.value,
+      );
 
-    final updatedDevices = currentState.devices
-        .map((device) => device.id == updatedDevice.id ? updatedDevice : device)
-        .toList();
+      final updatedDevices = currentState.devices
+          .map(
+            (device) => device.id == updatedDevice.id ? updatedDevice : device,
+          )
+          .toList();
 
-    emit(
-      DashboardLoaded(
-        devices: updatedDevices,
-        selectedDevice: updatedDevice,
-        isAddDeviceSelected: currentState.isAddDeviceSelected,
-      ),
-    );
+      emit(
+        DashboardLoadedAction(
+          devices: updatedDevices,
+          selectedDevice: updatedDevice,
+          isAddDeviceSelected: currentState.isAddDeviceSelected,
+          action: DashboardAction.sensitivityChanged,
+          status: DashboardActionStatus.success,
+          message: AppStrings.sensitivityUpdatedSuccessfully,
+        ),
+      );
+    } catch (_) {
+      emit(
+        DashboardLoadedAction(
+          devices: currentState.devices,
+          selectedDevice: currentState.selectedDevice,
+          isAddDeviceSelected: currentState.isAddDeviceSelected,
+          action: DashboardAction.sensitivityChanged,
+          status: DashboardActionStatus.failure,
+          message: AppStrings.failedToUpdateSensitivity,
+        ),
+      );
+    }
   }
 
   Future<void> _onDeviceChanged(

@@ -5,6 +5,7 @@ class AppSlider extends StatelessWidget {
     super.key,
     required this.value,
     this.onChanged,
+    this.onChangeEnd,
     this.enabled = true,
     this.min = 0,
     this.max = 100,
@@ -18,6 +19,7 @@ class AppSlider extends StatelessWidget {
 
   final double value;
   final ValueChanged<double>? onChanged;
+  final ValueChanged<double>? onChangeEnd;
   final bool enabled;
   final double min;
   final double max;
@@ -35,6 +37,7 @@ class AppSlider extends StatelessWidget {
       divisions: divisions,
       label: label,
       onChanged: _isEnabled ? onChanged : null,
+      onChangeEnd: _isEnabled ? onChangeEnd : null,
     );
   }
 }

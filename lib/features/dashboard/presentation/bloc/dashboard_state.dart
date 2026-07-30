@@ -1,6 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:bagguard/features/devices/data/models/device.dart';
 
+enum DashboardAction { protectionChanged, sensitivityChanged }
+
+enum DashboardActionStatus { success, failure }
+
 sealed class DashboardState extends Equatable {
   const DashboardState();
 
@@ -38,4 +42,22 @@ final class DashboardError extends DashboardState {
 
   @override
   List<Object?> get props => [message];
+}
+
+final class DashboardLoadedAction extends DashboardLoaded {
+  const DashboardLoadedAction({
+    required super.devices,
+    required super.selectedDevice,
+    required super.isAddDeviceSelected,
+    required this.action,
+    required this.status,
+    this.message,
+  });
+
+  final DashboardAction action;
+  final DashboardActionStatus status;
+  final String? message;
+
+  @override
+  List<Object?> get props => [...super.props, action, status, message];
 }
