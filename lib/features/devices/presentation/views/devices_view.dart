@@ -75,7 +75,6 @@ class DevicesView extends StatelessWidget {
                       onTap: () {
                         context.push(AppRoutes.deviceDetailsPath(device.id));
                       },
-                      onMorePressed: () {},
                     );
                   },
                 ),
