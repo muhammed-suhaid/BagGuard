@@ -235,7 +235,7 @@ class DeviceDetailsView extends StatelessWidget {
 
                                   const SizedBox(width: AppSpacing.xs),
 
-                                  const Icon(Icons.chevron_right),
+                                  const Icon(AppIcons.right),
                                 ],
                               ),
                               onTap: () => _showSensitivityDialog(context),

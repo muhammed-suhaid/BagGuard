@@ -41,16 +41,25 @@ class DashboardView extends StatelessWidget {
           context.read<DashboardBloc>().add(const DashboardStarted());
         },
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(AppSpacing.sm),
-          physics: const AlwaysScrollableScrollPhysics(),
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.sm,
+            AppSpacing.sm,
+            AppSpacing.sm,
+            AppSpacing.xxxl,
+          ),
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppHeader(
-                leading: AppIconButton(
-                  icon: const Icon(AppIcons.hamMenu),
-                  iconSize: AppDimensions.iconLarge,
-                  onPressed: () {},
+                leading: Padding(
+                  padding: const EdgeInsets.only(left: AppSpacing.sm),
+                  child: Text(
+                    AppStrings.appName,
+                    style: textTheme.headlineLarge,
+                  ),
                 ),
                 trailing: AppIconButton(
                   icon: const Icon(AppIcons.notification),
@@ -59,17 +68,11 @@ class DashboardView extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: AppSpacing.xs),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(AppStrings.appName, style: textTheme.headlineLarge),
-
-                    const SizedBox(height: AppSpacing.xs),
-
                     Text(AppStrings.appSubtitle, style: textTheme.bodyMedium),
 
                     const SizedBox(height: AppSpacing.xl),

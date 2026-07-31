@@ -31,7 +31,9 @@ class DevicesView extends StatelessWidget {
         },
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.sm),
-          physics: const AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -79,6 +81,8 @@ class DevicesView extends StatelessWidget {
                   },
                 ),
               ),
+
+              const SizedBox(height: AppSpacing.xxxl),
             ],
           ),
         ),

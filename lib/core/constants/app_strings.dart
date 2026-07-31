@@ -161,6 +161,21 @@ class AppStrings {
   static const deviceReadyDescription =
       'Your BagGuard device is now ready to protect your belongings.';
 
+  // Settings
+  static const settings = 'Settings';
+  static const general = 'GENERAL';
+  static const notifications = 'Notifications';
+  static const autoReconnect = 'Auto Reconnect';
+  static const darkMode = 'Dark Mode';
+  static const device = 'DEVICE';
+  static const vibration = 'Vibration';
+  static const loudAlarm = 'Loud Alarm';
+  static const sensitivityLevels = 'Sensitivity Levels';
+  static const about = 'ABOUT';
+  static const privacyPolicy = 'Privacy Policy';
+  static const termsofService = 'Terms of Service';
+  static const appVersion = 'App Version';
+
   // History
   static const history = 'History';
 }

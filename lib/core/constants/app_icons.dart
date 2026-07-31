@@ -16,6 +16,7 @@ class AppIcons {
   static const notification = Icons.notifications;
   static const menu = Icons.more_vert;
   static const back = Icons.arrow_back_ios_new;
+  static const right = Icons.chevron_right;
 
   // Device
   static const device = Icons.backpack_outlined;
@@ -33,6 +34,7 @@ class AppIcons {
   static const edit = Icons.edit_outlined;
   static const delete = Icons.delete_outline;
   static const bag = Icons.backpack;
+  static const help = Icons.help_outline_rounded;
 
   // Password
   static const visibility = Icons.visibility_outlined;
