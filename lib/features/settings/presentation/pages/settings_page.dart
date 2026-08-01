@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:bagguard/core/mocks/mock_settings.dart';
 import 'package:bagguard/features/settings/presentation/views/settings_view.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -7,6 +8,6 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SettingsView();
+    return SettingsView(settings: MockSettings.settings);
   }
 }

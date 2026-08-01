@@ -9,9 +9,12 @@ import 'package:bagguard/core/constants/app_strings.dart';
 import 'package:bagguard/shared/widgets/app_list_tile.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/buttons/app_icon_button.dart';
+import 'package:bagguard/features/settings/data/models/settings.dart';
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({super.key});
+  const SettingsView({super.key, required this.settings});
+
+  final Settings settings;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +66,7 @@ class SettingsView extends StatelessWidget {
                             ),
                             title: AppStrings.notifications,
                             trailing: AppSwitch(
-                              value: true,
+                              value: settings.notificationsEnabled,
                               onChanged: (value) {},
                             ),
                             showDivider: true,
@@ -74,7 +77,7 @@ class SettingsView extends StatelessWidget {
                             ),
                             title: AppStrings.autoReconnect,
                             trailing: AppSwitch(
-                              value: true,
+                              value: settings.autoReconnectEnabled,
                               onChanged: (value) {},
                             ),
                             showDivider: true,
@@ -85,7 +88,7 @@ class SettingsView extends StatelessWidget {
                             ),
                             title: AppStrings.darkMode,
                             trailing: AppSwitch(
-                              value: false,
+                              value: settings.darkModeEnabled,
                               onChanged: (value) {},
                             ),
                           ),
@@ -109,7 +112,7 @@ class SettingsView extends StatelessWidget {
                             ),
                             title: AppStrings.vibration,
                             trailing: AppSwitch(
-                              value: true,
+                              value: settings.vibrationEnabled,
                               onChanged: (value) {},
                             ),
                             showDivider: true,
@@ -120,7 +123,7 @@ class SettingsView extends StatelessWidget {
                             ),
                             title: AppStrings.loudAlarm,
                             trailing: AppSwitch(
-                              value: false,
+                              value: settings.loudAlarmEnabled,
                               onChanged: (value) {},
                             ),
                             showDivider: true,
@@ -158,7 +161,10 @@ class SettingsView extends StatelessWidget {
                           ),
                           AppListTile(
                             title: AppStrings.appVersion,
-                            trailing: Text('1.0.0', style: textTheme.bodyLarge),
+                            trailing: Text(
+                              settings.appVersion,
+                              style: textTheme.bodyLarge,
+                            ),
                           ),
                         ],
                       ),
