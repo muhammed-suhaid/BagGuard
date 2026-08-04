@@ -90,6 +90,24 @@ class AppStrings {
   static const deviceDisconnectedSuccessfully =
       'Device disconnected successfully.';
   static const deviceForgottenSuccessfully = 'Device removed successfully.';
+  static const notificationsEnabledSuccessfully =
+      'Notifications enabled successfully.';
+  static const notificationsDisabledSuccessfully =
+      'Notifications disabled successfully.';
+  static const autoReconnectEnabledSuccessfully =
+      'Auto reconnect enabled successfully.';
+  static const autoReconnectDisabledSuccessfully =
+      'Auto reconnect disabled successfully.';
+  static const darkModeEnabledSuccessfully = 'Dark mode enabled successfully.';
+  static const darkModeDisabledSuccessfully =
+      'Dark mode disabled successfully.';
+  static const vibrationEnabledSuccessfully = 'Vibration enabled successfully.';
+  static const vibrationDisabledSuccessfully =
+      'Vibration disabled successfully.';
+  static const loudAlarmEnabledSuccessfully =
+      'Loud alarm enabled successfully.';
+  static const loudAlarmDisabledSuccessfully =
+      'Loud alarm disabled successfully.';
 
   // Errors
   static const unavailable = 'Unavailable';
@@ -120,6 +138,18 @@ class AppStrings {
       'Failed to update the bag type. Please try again.';
   static const failedToForgetDevice =
       'Failed to remove the device. Please try again.';
+  static const unableToLoadSettings =
+      'Unable to load settings. Please try again.';
+  static const failedToUpdateNotifications =
+      'Failed to update notifications. Please try again.';
+  static const failedToUpdateAutoReconnect =
+      'Failed to update auto reconnect. Please try again.';
+  static const failedToUpdateDarkMode =
+      'Failed to update dark mode. Please try again.';
+  static const failedToUpdateVibration =
+      'Failed to update vibration. Please try again.';
+  static const failedToUpdateLoudAlarm =
+      'Failed to update loud alarm. Please try again.';
 
   // Confirmation Dialog
   static const String forgetDeviceMessage =
