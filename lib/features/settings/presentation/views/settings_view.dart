@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:bagguard/core/theme/app_spacing.dart';
 import 'package:bagguard/shared/widgets/app_card.dart';
 import 'package:bagguard/core/constants/app_icons.dart';
@@ -10,6 +12,8 @@ import 'package:bagguard/shared/widgets/app_list_tile.dart';
 import 'package:bagguard/core/constants/app_dimensions.dart';
 import 'package:bagguard/shared/widgets/buttons/app_icon_button.dart';
 import 'package:bagguard/features/settings/data/models/settings.dart';
+import 'package:bagguard/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:bagguard/features/settings/presentation/bloc/settings_event.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key, required this.settings});
@@ -22,7 +26,9 @@ class SettingsView extends StatelessWidget {
 
     return SafeArea(
       child: RefreshIndicator(
-        onRefresh: () async {},
+        onRefresh: () async {
+          context.read<SettingsBloc>().add(const SettingsStarted());
+        },
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.sm),
           physics: const AlwaysScrollableScrollPhysics(
@@ -67,7 +73,11 @@ class SettingsView extends StatelessWidget {
                             title: AppStrings.notifications,
                             trailing: AppSwitch(
                               value: settings.notificationsEnabled,
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                context.read<SettingsBloc>().add(
+                                  NotificationsChanged(enabled: value),
+                                );
+                              },
                             ),
                             showDivider: true,
                           ),
@@ -78,7 +88,11 @@ class SettingsView extends StatelessWidget {
                             title: AppStrings.autoReconnect,
                             trailing: AppSwitch(
                               value: settings.autoReconnectEnabled,
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                context.read<SettingsBloc>().add(
+                                  AutoReconnectChanged(enabled: value),
+                                );
+                              },
                             ),
                             showDivider: true,
                           ),
@@ -89,7 +103,11 @@ class SettingsView extends StatelessWidget {
                             title: AppStrings.darkMode,
                             trailing: AppSwitch(
                               value: settings.darkModeEnabled,
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                context.read<SettingsBloc>().add(
+                                  DarkModeChanged(enabled: value),
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -113,7 +131,11 @@ class SettingsView extends StatelessWidget {
                             title: AppStrings.vibration,
                             trailing: AppSwitch(
                               value: settings.vibrationEnabled,
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                context.read<SettingsBloc>().add(
+                                  VibrationChanged(enabled: value),
+                                );
+                              },
                             ),
                             showDivider: true,
                           ),
@@ -124,7 +146,11 @@ class SettingsView extends StatelessWidget {
                             title: AppStrings.loudAlarm,
                             trailing: AppSwitch(
                               value: settings.loudAlarmEnabled,
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                context.read<SettingsBloc>().add(
+                                  LoudAlarmChanged(enabled: value),
+                                );
+                              },
                             ),
                             showDivider: true,
                           ),

@@ -38,8 +38,13 @@ import 'package:bagguard/features/devices/presentation/pages/device_details_page
 import 'package:bagguard/features/devices/presentation/bloc/device_details/device_details_bloc.dart';
 import 'package:bagguard/features/devices/presentation/bloc/device_details/device_details_event.dart';
 
-import 'package:bagguard/features/history/presentation/pages/history_page.dart';
+import 'package:bagguard/features/settings/data/services/settings_service.dart';
+import 'package:bagguard/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:bagguard/features/settings/presentation/pages/settings_page.dart';
+import 'package:bagguard/features/settings/presentation/bloc/settings_event.dart';
+import 'package:bagguard/features/settings/data/repositories/settings_repositories.dart';
+
+import 'package:bagguard/features/history/presentation/pages/history_page.dart';
 
 class AppRouter {
   AppRouter._();
@@ -140,7 +145,14 @@ class AppRouter {
             routes: [
               GoRoute(
                 path: AppRoutes.settings,
-                builder: (_, _) => const SettingsPage(),
+                builder: (_, _) => BlocProvider(
+                  create: (_) => SettingsBloc(
+                    settingsRepository: SettingsRepository(
+                      settingsService: SettingsService(),
+                    ),
+                  )..add(const SettingsStarted()),
+                  child: const SettingsPage(),
+                ),
               ),
             ],
           ),

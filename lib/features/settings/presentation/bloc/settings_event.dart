@@ -11,8 +11,8 @@ final class SettingsStarted extends SettingsEvent {
   const SettingsStarted();
 }
 
-final class NotificationsToggled extends SettingsEvent {
-  const NotificationsToggled({required this.enabled});
+final class NotificationsChanged extends SettingsEvent {
+  const NotificationsChanged({required this.enabled});
 
   final bool enabled;
 
@@ -20,8 +20,8 @@ final class NotificationsToggled extends SettingsEvent {
   List<Object?> get props => [enabled];
 }
 
-final class AutoReconnectToggled extends SettingsEvent {
-  const AutoReconnectToggled({required this.enabled});
+final class AutoReconnectChanged extends SettingsEvent {
+  const AutoReconnectChanged({required this.enabled});
 
   final bool enabled;
 
@@ -29,8 +29,8 @@ final class AutoReconnectToggled extends SettingsEvent {
   List<Object?> get props => [enabled];
 }
 
-final class DarkModeToggled extends SettingsEvent {
-  const DarkModeToggled({required this.enabled});
+final class DarkModeChanged extends SettingsEvent {
+  const DarkModeChanged({required this.enabled});
 
   final bool enabled;
 
@@ -38,8 +38,8 @@ final class DarkModeToggled extends SettingsEvent {
   List<Object?> get props => [enabled];
 }
 
-final class VibrationToggled extends SettingsEvent {
-  const VibrationToggled({required this.enabled});
+final class VibrationChanged extends SettingsEvent {
+  const VibrationChanged({required this.enabled});
 
   final bool enabled;
 
@@ -47,8 +47,8 @@ final class VibrationToggled extends SettingsEvent {
   List<Object?> get props => [enabled];
 }
 
-final class LoudAlarmToggled extends SettingsEvent {
-  const LoudAlarmToggled({required this.enabled});
+final class LoudAlarmChanged extends SettingsEvent {
+  const LoudAlarmChanged({required this.enabled});
 
   final bool enabled;
 

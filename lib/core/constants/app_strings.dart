@@ -205,6 +205,9 @@ class AppStrings {
   static const privacyPolicy = 'Privacy Policy';
   static const termsofService = 'Terms of Service';
   static const appVersion = 'App Version';
+  static const loadingSettings = 'Loading settings...';
+  static const loadingSettingsDescription =
+      'Please wait while we prepare your settings.';
 
   // History
   static const history = 'History';

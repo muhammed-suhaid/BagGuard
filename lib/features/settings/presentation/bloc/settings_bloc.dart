@@ -10,11 +10,11 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     : _settingsRepository = settingsRepository,
       super(const SettingsInitial()) {
     on<SettingsStarted>(_onStarted);
-    on<NotificationsToggled>(_onNotificationsToggled);
-    on<AutoReconnectToggled>(_onAutoReconnectToggled);
-    on<DarkModeToggled>(_onDarkModeToggled);
-    on<VibrationToggled>(_onVibrationToggled);
-    on<LoudAlarmToggled>(_onLoudAlarmToggled);
+    on<NotificationsChanged>(_onNotificationsChanged);
+    on<AutoReconnectChanged>(_onAutoReconnectChanged);
+    on<DarkModeChanged>(_onDarkModeChanged);
+    on<VibrationChanged>(_onVibrationChanged);
+    on<LoudAlarmChanged>(_onLoudAlarmChanged);
   }
 
   final SettingsRepository _settingsRepository;
@@ -36,8 +36,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     }
   }
 
-  Future<void> _onNotificationsToggled(
-    NotificationsToggled event,
+  Future<void> _onNotificationsChanged(
+    NotificationsChanged event,
     Emitter<SettingsState> emit,
   ) async {
     final currentState = state;
@@ -73,8 +73,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     }
   }
 
-  Future<void> _onAutoReconnectToggled(
-    AutoReconnectToggled event,
+  Future<void> _onAutoReconnectChanged(
+    AutoReconnectChanged event,
     Emitter<SettingsState> emit,
   ) async {
     final currentState = state;
@@ -110,8 +110,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     }
   }
 
-  Future<void> _onDarkModeToggled(
-    DarkModeToggled event,
+  Future<void> _onDarkModeChanged(
+    DarkModeChanged event,
     Emitter<SettingsState> emit,
   ) async {
     final currentState = state;
@@ -147,8 +147,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     }
   }
 
-  Future<void> _onVibrationToggled(
-    VibrationToggled event,
+  Future<void> _onVibrationChanged(
+    VibrationChanged event,
     Emitter<SettingsState> emit,
   ) async {
     final currentState = state;
@@ -184,8 +184,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     }
   }
 
-  Future<void> _onLoudAlarmToggled(
-    LoudAlarmToggled event,
+  Future<void> _onLoudAlarmChanged(
+    LoudAlarmChanged event,
     Emitter<SettingsState> emit,
   ) async {
     final currentState = state;
